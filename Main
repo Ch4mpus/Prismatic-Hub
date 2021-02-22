@@ -331,7 +331,12 @@ local function clientSide() -- Background.MainClient
 	local gameScripts = {
 		["Ch4mpus's Place"] = {
 			"Speed";
-			"Jump"
+			"Jump";
+			"More lines 1";
+			"More lines 2";
+			"More lines 3";
+			"More lines 4";
+			
 		};
 		
 		["The Rake"] = {
@@ -346,6 +351,7 @@ local function clientSide() -- Background.MainClient
 		
 		["Prison Life"] ={
 			"Kill Aura";
+			"Escape Prison";
 		};
 	}
 	
@@ -500,7 +506,7 @@ local function clientSide() -- Background.MainClient
 						wait()
 						--// Forever
 						for i, plr in pairs(_Players:GetChildren()) do
-							if plr.Name ~= game.Players.LocalPlayer.Name then
+							if plr.Name ~= _Players.LocalPlayer.Name then
 								for i = 1,5 do 
 									--// Fires Knife Event, which makes the player take damage.
 									_ReplicatedStorage.meleeEvent:FireServer(plr)
@@ -509,6 +515,8 @@ local function clientSide() -- Background.MainClient
 						end
 
 					end
+				elseif name == "Escape Prison" then
+					_Workspace[_Players.LocalPlayer.Name].HumanoidRootPart.Position = Vector3.new(-943.92, 97.335, 2058.05)
 				end
 			end
 		else
@@ -634,7 +642,7 @@ local function clientSide() -- Background.MainClient
 		Selector:TweenSizeAndPosition(selectPos.Size1, selectPos.Pos1)
 		wait(3)
 		Itransparency(Selector.ScriptHub, 0, 2, false, nil)
-		wait(5)
+		wait(2.5)
 		clear()
 	end
 	--// End of Setup
@@ -652,3 +660,4 @@ local function clientSide() -- Background.MainClient
 	--// End
 end
 coroutine.wrap(clientSide)()
+
