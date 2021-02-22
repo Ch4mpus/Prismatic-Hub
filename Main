@@ -261,7 +261,7 @@ do -- Background.DragModule
 		function module.updateDrag(ui, udim)
 			ui:TweenPosition(udim, Enum.EasingDirection.Out, Enum.EasingStyle.Quad, .3, true)
 		end
-		
+
 		script.Parent.InputBegan:Connect(function(input)
 			local ms = game.Players.LocalPlayer:GetMouse()
 			if input.UserInputType == Enum.UserInputType.MouseButton1 then
@@ -273,9 +273,9 @@ do -- Background.DragModule
 				until not UserInputService:IsMouseButtonPressed(Enum.UserInputType.MouseButton1)
 			end
 		end)
-		
-		
-		
+
+
+
 		return module
 	end
 	fake_module_scripts[script] = module_script
@@ -301,7 +301,7 @@ local function clientSide() -- Background.MainClient
 	local _Workspace = game:GetService("Workspace")
 	local _Players = game:GetService("Players")
 	local _ReplicatedStorage = game:GetService("ReplicatedStorage")
-	
+
 	--// Variables
 	local MainUI = script.Parent.Parent
 	local Loader = script.Parent.Loader
@@ -311,23 +311,23 @@ local function clientSide() -- Background.MainClient
 	local isOpen = false
 	local canClose = false
 	local st = 0
-	
-	
+
+
 	--// Tables
 	local gameIds = {2413927524, 6416764356, 4966566022,155615604}
-	
+
 	local games = {
 		[2413927524] = "The Rake";
 		[6416764356] = "Ch4mpus's Place";
 		[4966566022] = "Paradise Life";
 		[155615604] = "Prison Life";
 	}
-	
+
 	local selectPos = {
 		Pos1 = UDim2.new(-0, 0,-0.001, 0);
 		Size1 = UDim2.new(0, 42,0, 281);
 	}
-	
+
 	local gameScripts = {
 		["Ch4mpus's Place"] = {
 			"Speed";
@@ -336,43 +336,47 @@ local function clientSide() -- Background.MainClient
 			"More lines 2";
 			"More lines 3";
 			"More lines 4";
-			
+
 		};
-		
+
 		["The Rake"] = {
 			"Crate ESP";
-			
+
 		};
-		
+
 		["Paradise Life"] ={
 			"Speed";
 			"Jump";
 		};
-		
+
 		["Prison Life"] ={
 			"Kill Aura";
 			"Escape Prison";
+			"TP to Prison";
+			"Arrest Aura";
+			"Speed";
+			"M4A1"
 		};
 	}
-	
+
 	--// Functions
 	local function waitTil()
 		repeat
 			wait(1)
 			print(script.Parent.Parent.Parent.Name)
 		until script.Parent.Parent.Parent.Name == "PlayerGui"
-		
+
 		return true
-		
+
 	end
-	
+
 	local function validatePlayer()
 		return true
 	end
-	
+
 	local function validateGame()
 		local f = false
-		
+
 		for _, v in pairs(gameIds) do
 			print(game.GameId)
 			print(v)
@@ -380,30 +384,30 @@ local function clientSide() -- Background.MainClient
 				f = true
 			end
 		end
-		
+
 		return f
 	end
-	
+
 	local function validateSide()
 		if RunService:IsClient() then
 			return true
 		end
 	end
-	
-	
+
+
 	local function validate(a,b,c)
 		local t = {a,b,c}
 		local f = true
-		
+
 		for i, v in pairs(t) do
 			if not v then
 				return false
 			end
 		end
-		
+
 		return f
 	end
-	
+
 	local function E_Pressed(input, typing)
 		if typing == false then
 			if input.KeyCode == Enum.KeyCode.E then
@@ -417,38 +421,38 @@ local function clientSide() -- Background.MainClient
 			end
 		end
 	end
-	
+
 	local function transparency(item, goal, _time, color, color3, y)
 		if color then
 			TweenService:Create(item,TweenInfo.new(_time, Enum.EasingStyle.Cubic, Enum.EasingDirection.Out,0,false,0), {TextTransparency = goal; TextColor3 = color3}):Play()
 		else
 			TweenService:Create(item,TweenInfo.new(_time, Enum.EasingStyle.Cubic, Enum.EasingDirection.Out,0,false,0), {TextTransparency = goal}):Play()
 		end
-		
+
 		if y then
 			TweenService:Create(item,TweenInfo.new(_time, Enum.EasingStyle.Cubic, Enum.EasingDirection.In,0,false,0), {TextTransparency = goal}):Play()
 		end
-	
+
 	end
-	
+
 	local function Btransparency(item, goal, _time, color, color3)
 		if color then
 			TweenService:Create(item,TweenInfo.new(_time, Enum.EasingStyle.Cubic, Enum.EasingDirection.Out,0,false,0), {BackgroundTransparency = goal; BackgroundColor3 = color3}):Play()
 		else
 			TweenService:Create(item,TweenInfo.new(_time, Enum.EasingStyle.Cubic, Enum.EasingDirection.Out,0,false,0), {BackgroundTransparency = goal}):Play()
 		end
-	
+
 	end
-	
+
 	local function Itransparency(item, goal, _time, color, color3)
 		if color then
 			TweenService:Create(item,TweenInfo.new(_time, Enum.EasingStyle.Cubic, Enum.EasingDirection.Out,0,false,0), {ImageTransparency = goal; ImageColor3 = color3}):Play()
 		else
 			TweenService:Create(item,TweenInfo.new(_time, Enum.EasingStyle.Cubic, Enum.EasingDirection.Out,0,false,0), {ImageTransparency = goal}):Play()
 		end
-	
+
 	end
-	
+
 	local function clear()
 		for i,value in pairs(Loader:GetChildren()) do
 			transparency(value, 1, 2.5, false, nil, true)
@@ -460,19 +464,19 @@ local function clientSide() -- Background.MainClient
 	local function found(gameScripts, _Game, name)
 		print(_Game)
 		for _, v in pairs(gameScripts[_Game]) do
-			
+
 			if v == name then
 				return true
 			end
 		end
 	end
-	
+
 	local function runScript(_Game, name)
-		
+
 		local EN = found(gameScripts, _Game, name)
-		
-		
-		
+
+
+
 		if EN then
 			if _Game == "Ch4mpus's Place" then
 				if name == "Speed" then
@@ -482,16 +486,36 @@ local function clientSide() -- Background.MainClient
 				end
 			elseif _Game == "The Rake" then
 				if name == "Crate ESP" then
-					local ef = _Workspace["SupplyCrates"]:FindFirstChild("Box")
-					if ef then
-						game.StarterGui:SetCore("SendNotification", {
-							Title = "LootBox"; -- Fill "" with your desired text
-							Text = "Position : "..ef:FindFirstChildWhichIsA("Part").Position; -- [i]Fill "" with your desired text[/i]
-							Icon = ""; -- Image Asset (rbxassetid//1
-							Duration = 5; -- How long you want the pop-up to last
-						})
-					end
-					
+					while wait(1) do
+						if game:GetService("Workspace").SupplyCrates:FindFirstChild("SupplyCrate") then
+							for i,v in pairs(game.Workspace.SupplyCrates:GetChildren()) do
+								if v.Name == "SupplyCrate" then
+
+									local fraud1 = Instance.new("BillboardGui")
+									fraud1.Parent = v
+									fraud1.AlwaysOnTop = true
+									fraud1.Size = UDim2.new(1, 1, 1)
+									fraud1.Name = "fraud1"
+									fraud1.Active = true
+									fraud1.Enabled = true
+									fraud1.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
+									local esp1 = Instance.new("TextLabel")
+									esp1.Parent = fraud1
+									esp1.Size = UDim2.new(1, 1, 1)
+									esp1.TextColor3 = Color3.new(23,45,67)
+									esp1.Active = true
+									esp1.Text = "LootBox"
+									esp1.ZIndex = 1
+									esp1.Visible = true
+									esp1.BackgroundTransparency = 1
+									esp1.TextStrokeTransparency = 1
+									wait(5)
+									fraud1:Destroy()
+								end
+							end
+						end
+					end  
+
 				end
 			elseif _Game == "Paradise Life" then
 				if name == "Speed" then
@@ -517,14 +541,37 @@ local function clientSide() -- Background.MainClient
 					end
 				elseif name == "Escape Prison" then
 					_Workspace[_Players.LocalPlayer.Name].HumanoidRootPart.Position = Vector3.new(-943.92, 97.335, 2058.05)
+				elseif name == "M4A1" then
+					local Weapon = {"M4A1"}
+					for i,v in pairs(workspace.Prison_ITEMS.giver:GetChildren()) do
+						if v.Name == Weapon[1] then
+							local lol = workspace.Remote.ItemHandler:InvokeServer(v.ITEMPICKUP)
+						end
+					end
+				elseif name == "TP to Prison" then
+					_Workspace[_Players.LocalPlayer.Name].HumanoidRootPart.Position = Vector3.new(897.31, 143.763, 2438.97)
+				elseif name == "Arrest Aura" then
+					while wait(.9) do
+						for i = 1,10 do
+							local arrestEvent = _Workspace.Remote.arrest
+							for _, plr in pairs (game:GetService('Players'):GetChildren()) do
+								if plr.Name ~= _Players.LocalPlayer.Name then
+									local obj = plr.Character.HumanoidRootPart
+									local response =arrestEvent:InvokeServer(obj)
+								end
+							end
+						end
+					end
+				elseif name == "Speed" then
+					_Workspace[_Players.LocalPlayer.Name].Humanoid.WalkSpeed = 60
 				end
 			end
 		else
 			--// Does nothing :]
 		end
-		
+
 	end
-	
+
 	local function addScript(string_, _game)
 		if st == 0 then
 			local f = SF.SP1:Clone()
@@ -554,11 +601,11 @@ local function clientSide() -- Background.MainClient
 			--//
 			return f
 		end
-		
+
 	end
-	
-	
-	
+
+
+
 	--// End
 	local function hovered()
 		print("J")
@@ -566,14 +613,14 @@ local function clientSide() -- Background.MainClient
 			Itransparency(Selector.ScriptHub, 0, 0, true, Color3.new(255,255,255), false)
 		end)	
 	end
-	
+
 	local function hoverEnded()
 		print("L")
 		spawn(function()
 			Itransparency(Selector.ScriptHub, 0, 1, true, Color3.new(0,0,0), true)
 		end)
 	end
-	
+
 	local function scriptPage()
 		if not isOpen then
 			isOpen = true
@@ -597,13 +644,13 @@ local function clientSide() -- Background.MainClient
 			end
 		end
 	end
-	
+
 	--// Set Up
 	require(script.Parent.DragModule)
 	UserInput.InputBegan:Connect(E_Pressed)
 	waitTil()
 	transparency(Loader.Check1, 0, 3, false, nil)
-	
+
 	local p = validatePlayer()
 	local g = validateGame()
 	local s = validateSide()
@@ -615,7 +662,7 @@ local function clientSide() -- Background.MainClient
 		transparency(Loader.Check2, 0, 2, true, Color3.new(0,200,0))
 	end
 	wait(2.5)
-	
+
 	if not g then
 		print("P")
 		transparency(Loader.Check3, 0, 2, true, Color3.new(200,0,0))
@@ -623,14 +670,14 @@ local function clientSide() -- Background.MainClient
 		transparency(Loader.Check3, 0, 2, true, Color3.new(0,200,0))
 	end
 	wait(2.5)
-	
+
 	if not s then
 		transparency(Loader.Check4, 0, 2, true, Color3.new(200,0,0))
 	else
 		transparency(Loader.Check4, 0, 2, true, Color3.new(0,200,0))
 	end
-	
-	
+
+
 	wait(5)
 	if not validate(p,g,s) then
 		transparency(Loader.Check5, 0, 2, true, Color3.new(200,0,0))
@@ -647,17 +694,16 @@ local function clientSide() -- Background.MainClient
 	end
 	--// End of Setup
 	--// Main Code
-	
+
 	Selector.ScriptHub.MouseEnter:Connect(hovered)
-	
+
 	Selector.ScriptHub.MouseLeave:Connect(hoverEnded)
-	
+
 	Selector.ScriptHub.MouseButton1Down:Connect(scriptPage)
-	
-	
-	
-	
+
+
+
+
 	--// End
 end
 coroutine.wrap(clientSide)()
-
