@@ -300,6 +300,7 @@ local function clientSide() -- Background.MainClient
 	local UserInput = game:GetService("UserInputService")
 	local _Workspace = game:GetService("Workspace")
 	local _Players = game:GetService("Players")
+	local _ReplicatedStorage = game:GetService("ReplicatedStorage")
 	
 	--// Variables
 	local MainUI = script.Parent.Parent
@@ -313,12 +314,13 @@ local function clientSide() -- Background.MainClient
 	
 	
 	--// Tables
-	local gameIds = {2413927524, 6416764356, 4966566022}
+	local gameIds = {2413927524, 6416764356, 4966566022,155615604}
 	
 	local games = {
 		[2413927524] = "The Rake";
 		[6416764356] = "Ch4mpus's Place";
 		[4966566022] = "Paradise Life";
+		[155615604] = "Prison life";
 	}
 	
 	local selectPos = {
@@ -334,11 +336,16 @@ local function clientSide() -- Background.MainClient
 		
 		["The Rake"] = {
 			"Crate ESP";
+			
 		};
 		
 		["Paradise Life"] ={
 			"Speed";
 			"Jump";
+		};
+		
+		["Prison Life"] ={
+			"Kill Aura";
 		};
 	}
 	
@@ -481,6 +488,23 @@ local function clientSide() -- Background.MainClient
 					_Workspace[_Players.LocalPlayer.Name].Humanoid.WalkSpeed = 60
 				elseif name == "Jump" then
 					_Workspace[_Players.LocalPlayer.Name].Humanoid.JumpPower = 200
+				end
+			elseif _Game == "Prison Life" then
+				if name == "Kill Aura" then
+					--// Kill Aura
+					while wait(.9) do
+						wait()
+						--// Forever
+						for i, plr in pairs(_Players:GetChildren()) do
+							if plr.Name ~= game.Players.LocalPlayer.Name then
+								for i = 1,5 do 
+									--// Fires Knife Event, which makes the player take damage.
+									_ReplicatedStorage.meleeEvent:FireServer(plr)
+								end
+							end
+						end
+
+					end
 				end
 			end
 		else
