@@ -320,7 +320,7 @@ local function clientSide() -- Background.MainClient
 		[2413927524] = "The Rake";
 		[6416764356] = "Ch4mpus's Place";
 		[4966566022] = "Paradise Life";
-		[155615604] = "Prison life";
+		[155615604] = "Prison Life";
 	}
 	
 	local selectPos = {
