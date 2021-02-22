@@ -1,0 +1,612 @@
+--// Prismatic Hub, Made by Ch4mpus.
+
+local PrismaticUI = Instance.new("ScreenGui")
+local Background = Instance.new("Frame")
+local Loader = Instance.new("Frame")
+local Check1 = Instance.new("TextLabel")
+local Check2 = Instance.new("TextLabel")
+local Check3 = Instance.new("TextLabel")
+local Check4 = Instance.new("TextLabel")
+local Check6 = Instance.new("TextLabel")
+local Check5 = Instance.new("TextLabel")
+local Check7 = Instance.new("TextLabel")
+local Selector = Instance.new("Frame")
+local ScriptHub = Instance.new("ImageButton")
+local ScriptHub_2 = Instance.new("Frame")
+local Text1 = Instance.new("TextLabel")
+local ScrollingFrame = Instance.new("ScrollingFrame")
+local SP1 = Instance.new("TextButton")
+local LestFrame = Instance.new("Frame")
+local Text1_2 = Instance.new("TextLabel")
+local Text2 = Instance.new("TextLabel")
+
+
+PrismaticUI.Name = "Prismatic UI"
+PrismaticUI.Parent = game.Players.LocalPlayer:WaitForChild("PlayerGui")
+PrismaticUI.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
+PrismaticUI.ResetOnSpawn = false
+
+Background.Name = "Background"
+Background.Parent = PrismaticUI
+Background.BackgroundColor3 = Color3.fromRGB(21, 21, 21)
+Background.BorderColor3 = Color3.fromRGB(33, 51, 65)
+Background.BorderSizePixel = 0
+Background.Position = UDim2.new(0.254562855, 0, 0.225578874, 0)
+Background.Size = UDim2.new(0, 520, 0, 282)
+
+Loader.Name = "Loader"
+Loader.Parent = Background
+Loader.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+Loader.BackgroundTransparency = 1.000
+Loader.Position = UDim2.new(0.0788461566, 0, 0, 0)
+Loader.Size = UDim2.new(0, 479, 0, 282)
+
+Check1.Name = "Check1"
+Check1.Parent = Loader
+Check1.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+Check1.BackgroundTransparency = 1.000
+Check1.Position = UDim2.new(0.379958242, 0, 0.0319148935, 0)
+Check1.Size = UDim2.new(0, 94, 0, 24)
+Check1.Font = Enum.Font.Gotham
+Check1.Text = "Loading"
+Check1.TextColor3 = Color3.fromRGB(255, 255, 255)
+Check1.TextScaled = true
+Check1.TextSize = 14.000
+Check1.TextStrokeTransparency = 0.000
+Check1.TextTransparency = 1.000
+Check1.TextWrapped = true
+
+Check2.Name = "Check2"
+Check2.Parent = Loader
+Check2.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+Check2.BackgroundTransparency = 1.000
+Check2.Position = UDim2.new(0.338204592, 0, 0.163120568, 0)
+Check2.Size = UDim2.new(0, 133, 0, 15)
+Check2.Font = Enum.Font.Gotham
+Check2.Text = "User recognized"
+Check2.TextColor3 = Color3.fromRGB(255, 255, 255)
+Check2.TextScaled = true
+Check2.TextSize = 14.000
+Check2.TextStrokeTransparency = 0.000
+Check2.TextTransparency = 1.000
+Check2.TextWrapped = true
+
+Check3.Name = "Check3"
+Check3.Parent = Loader
+Check3.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+Check3.BackgroundTransparency = 1.000
+Check3.Position = UDim2.new(0.338204592, 0, 0.255319148, 0)
+Check3.Size = UDim2.new(0, 133, 0, 15)
+Check3.Font = Enum.Font.Gotham
+Check3.Text = "Game Supported"
+Check3.TextColor3 = Color3.fromRGB(255, 255, 255)
+Check3.TextScaled = true
+Check3.TextSize = 14.000
+Check3.TextStrokeTransparency = 0.000
+Check3.TextTransparency = 1.000
+Check3.TextWrapped = true
+
+Check4.Name = "Check4"
+Check4.Parent = Loader
+Check4.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+Check4.BackgroundTransparency = 1.000
+Check4.Position = UDim2.new(0.338204592, 0, 0.354609936, 0)
+Check4.Size = UDim2.new(0, 133, 0, 15)
+Check4.Font = Enum.Font.Gotham
+Check4.Text = "Client Side"
+Check4.TextColor3 = Color3.fromRGB(255, 255, 255)
+Check4.TextScaled = true
+Check4.TextSize = 14.000
+Check4.TextStrokeTransparency = 0.000
+Check4.TextTransparency = 1.000
+Check4.TextWrapped = true
+
+Check6.Name = "Check6"
+Check6.Parent = Loader
+Check6.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+Check6.BackgroundTransparency = 1.000
+Check6.Position = UDim2.new(0.235908151, 0, 0.914893627, 0)
+Check6.Size = UDim2.new(0, 232, 0, 15)
+Check6.Font = Enum.Font.Gotham
+Check6.Text = "Press 'E' to close the GUI"
+Check6.TextColor3 = Color3.fromRGB(255, 255, 255)
+Check6.TextScaled = true
+Check6.TextSize = 14.000
+Check6.TextStrokeTransparency = 0.000
+Check6.TextTransparency = 1.000
+Check6.TextWrapped = true
+
+Check5.Name = "Check5"
+Check5.Parent = Loader
+Check5.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+Check5.BackgroundTransparency = 1.000
+Check5.Position = UDim2.new(0.338204592, 0, 0.446808517, 0)
+Check5.Size = UDim2.new(0, 133, 0, 15)
+Check5.Font = Enum.Font.Gotham
+Check5.Text = "Validated"
+Check5.TextColor3 = Color3.fromRGB(255, 255, 255)
+Check5.TextScaled = true
+Check5.TextSize = 14.000
+Check5.TextStrokeTransparency = 0.000
+Check5.TextTransparency = 1.000
+Check5.TextWrapped = true
+
+Check7.Name = "Check7"
+Check7.Parent = Loader
+Check7.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+Check7.BackgroundTransparency = 1.000
+Check7.Position = UDim2.new(0.169102281, 0, 0.432624102, 0)
+Check7.Size = UDim2.new(0, 292, 0, 38)
+Check7.Font = Enum.Font.Gotham
+Check7.Text = "Press any button on the selector to change the page"
+Check7.TextColor3 = Color3.fromRGB(255, 255, 255)
+Check7.TextScaled = true
+Check7.TextSize = 14.000
+Check7.TextStrokeTransparency = 0.000
+Check7.TextTransparency = 1.000
+Check7.TextWrapped = true
+
+Selector.Name = "Selector"
+Selector.Parent = Background
+Selector.BackgroundColor3 = Color3.fromRGB(41, 43, 44)
+Selector.BorderColor3 = Color3.fromRGB(33, 51, 65)
+Selector.BorderSizePixel = 0
+Selector.ClipsDescendants = true
+Selector.Position = UDim2.new(-0.000393031194, 0, -0.00125706452, 0)
+Selector.Size = UDim2.new(0, 0, 0, 281)
+
+ScriptHub.Name = "ScriptHub"
+ScriptHub.Parent = Selector
+ScriptHub.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+ScriptHub.BackgroundTransparency = 1.000
+ScriptHub.Size = UDim2.new(0, 42, 0, 43)
+ScriptHub.Image = "rbxassetid://817446315"
+ScriptHub.ImageColor3 = Color3.fromRGB(0, 0, 0)
+ScriptHub.ImageTransparency = 1.000
+
+ScriptHub_2.Name = "ScriptHub"
+ScriptHub_2.Parent = Background
+ScriptHub_2.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+ScriptHub_2.BackgroundTransparency = 1.000
+ScriptHub_2.Position = UDim2.new(0.0788461566, 0, 0, 0)
+ScriptHub_2.Size = UDim2.new(0, 479, 0, 282)
+
+Text1.Name = "Text1"
+Text1.Parent = ScriptHub_2
+Text1.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+Text1.BackgroundTransparency = 1.000
+Text1.Position = UDim2.new(0.150313169, 0, 0, 0)
+Text1.Size = UDim2.new(0, 311, 0, 53)
+Text1.Font = Enum.Font.SourceSansLight
+Text1.Text = "Prismatic Hub"
+Text1.TextColor3 = Color3.fromRGB(41, 184, 186)
+Text1.TextScaled = true
+Text1.TextSize = 14.000
+Text1.TextStrokeColor3 = Color3.fromRGB(12, 53, 54)
+Text1.TextStrokeTransparency = 0.000
+Text1.TextTransparency = 1.000
+Text1.TextWrapped = true
+
+ScrollingFrame.Parent = ScriptHub_2
+ScrollingFrame.Active = true
+ScrollingFrame.BackgroundColor3 = Color3.fromRGB(41, 43, 44)
+ScrollingFrame.BackgroundTransparency = 1.000
+ScrollingFrame.BorderSizePixel = 0
+ScrollingFrame.Position = UDim2.new(0.578288078, 0, 0.187943265, 0)
+ScrollingFrame.Size = UDim2.new(0, 169, 0, 218)
+ScrollingFrame.ScrollBarThickness = 0
+
+SP1.Name = "SP1"
+SP1.Parent = ScrollingFrame
+SP1.BackgroundColor3 = Color3.fromRGB(68, 68, 68)
+SP1.BackgroundTransparency = 1.000
+SP1.BorderSizePixel = 0
+SP1.Position = UDim2.new(0.041420117, 0, 0.0106382975, 0)
+SP1.Size = UDim2.new(0, 155, 0, 23)
+SP1.Font = Enum.Font.Gotham
+SP1.Text = "Script"
+SP1.TextColor3 = Color3.fromRGB(255, 255, 255)
+SP1.TextSize = 14.000
+SP1.TextStrokeTransparency = 0.000
+SP1.TextTransparency = 1.000
+
+LestFrame.Name = "LestFrame"
+LestFrame.Parent = ScriptHub_2
+LestFrame.BackgroundColor3 = Color3.fromRGB(41, 43, 44)
+LestFrame.BackgroundTransparency = 1.000
+LestFrame.BorderSizePixel = 0
+LestFrame.Position = UDim2.new(0.0751565769, 0, 0.187943265, 0)
+LestFrame.Size = UDim2.new(0, 187, 0, 218)
+
+Text1_2.Name = "Text1"
+Text1_2.Parent = LestFrame
+Text1_2.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+Text1_2.BackgroundTransparency = 1.000
+Text1_2.BorderColor3 = Color3.fromRGB(27, 42, 53)
+Text1_2.BorderSizePixel = 0
+Text1_2.Position = UDim2.new(0.0213903747, 0, 0, 0)
+Text1_2.Size = UDim2.new(0, 178, 0, 24)
+Text1_2.Font = Enum.Font.Gotham
+Text1_2.Text = "The current game running is"
+Text1_2.TextColor3 = Color3.fromRGB(255, 255, 255)
+Text1_2.TextSize = 12.000
+Text1_2.TextTransparency = 1.000
+
+Text2.Name = "Text2"
+Text2.Parent = LestFrame
+Text2.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+Text2.BackgroundTransparency = 1.000
+Text2.BorderColor3 = Color3.fromRGB(27, 42, 53)
+Text2.BorderSizePixel = 0
+Text2.Position = UDim2.new(0.0209999997, 0, 0.0829999968, 0)
+Text2.Size = UDim2.new(0, 178, 0, 24)
+Text2.Font = Enum.Font.RobotoMono
+Text2.Text = "Game"
+Text2.TextColor3 = Color3.fromRGB(255, 255, 255)
+Text2.TextSize = 15.000
+Text2.TextTransparency = 1.000
+
+-- Module Scripts:
+
+local fake_module_scripts = {}
+
+do -- Background.DragModule
+	local script = Instance.new('ModuleScript', Background)
+	script.Name = "DragModule"
+	local function module_script()
+		local module = {}
+		--
+		local UserInputService = game:GetService("UserInputService")
+		--
+		function module.updateDrag(ui, udim)
+			ui:TweenPosition(udim, Enum.EasingDirection.Out, Enum.EasingStyle.Quad, .3, true)
+		end
+		
+		script.Parent.InputBegan:Connect(function(input)
+			local ms = game.Players.LocalPlayer:GetMouse()
+			if input.UserInputType == Enum.UserInputType.MouseButton1 then
+				repeat
+					wait(.01)
+					local x = ms.X
+					local y = ms.Y
+					module.updateDrag(script.Parent, UDim2.new(0,x, 0,y))
+				until not UserInputService:IsMouseButtonPressed(Enum.UserInputType.MouseButton1)
+			end
+		end)
+		
+		
+		
+		return module
+	end
+	fake_module_scripts[script] = module_script
+end
+
+
+
+local function clientSide() -- Background.MainClient 
+	local script = Instance.new('LocalScript', Background)
+	local req = require
+	local require = function(obj)
+		local fake = fake_module_scripts[obj]
+		if fake then
+			return fake()
+		end
+		return req(obj)
+	end
+
+	--// Services
+	local RunService = game:GetService("RunService")
+	local TweenService = game:GetService("TweenService")
+	local UserInput = game:GetService("UserInputService")
+	local _Workspace = game:GetService("Workspace")
+	local _Players = game:GetService("Players")
+	
+	--// Variables
+	local MainUI = script.Parent.Parent
+	local Loader = script.Parent.Loader
+	local Background = script.Parent
+	local Selector = Background.Selector
+	local SF = Background.ScriptHub.ScrollingFrame
+	local canClose = false
+	local st = 0
+	
+	
+	--// Tables
+	local gameIds = {2413927524, 6416764356}
+	
+	local games = {
+		[2413927524] = "The Rake";
+		[6416764356] = "Ch4mpus's Place"
+	}
+	
+	local selectPos = {
+		Pos1 = UDim2.new(-0, 0,-0.001, 0);
+		Size1 = UDim2.new(0, 42,0, 281);
+	}
+	
+	local gameScripts = {
+		["Ch4mpus's Place"] = {
+			"Speed";
+			"Jump"
+		};
+		
+		["The Rake"] = {
+			"Crate ESP";
+		}
+	}
+	
+	--// Functions
+	local function waitTil()
+		repeat
+			wait(1)
+			print(script.Parent.Parent.Parent.Name)
+		until script.Parent.Parent.Parent.Name == "PlayerGui"
+		
+		return true
+		
+	end
+	
+	local function validatePlayer()
+		return true
+	end
+	
+	local function validateGame()
+		local f = false
+		
+		for _, v in pairs(gameIds) do
+			print(game.GameId)
+			print(v)
+			if game.PlaceId == v then
+				f = true
+			end
+		end
+		
+		return f
+	end
+	
+	local function validateSide()
+		if RunService:IsClient() then
+			return true
+		end
+	end
+	
+	
+	local function validate(a,b,c)
+		local t = {a,b,c}
+		local f = true
+		
+		for i, v in pairs(t) do
+			if not v then
+				return false
+			end
+		end
+		
+		return f
+	end
+	
+	local function E_Pressed(input, typing)
+		if typing == false then
+			if input.KeyCode == Enum.KeyCode.E then
+				if canClose then
+					MainUI:Remove()
+				end
+			end
+		end
+	end
+	
+	local function transparency(item, goal, _time, color, color3, y)
+		if color then
+			TweenService:Create(item,TweenInfo.new(_time, Enum.EasingStyle.Cubic, Enum.EasingDirection.Out,0,false,0), {TextTransparency = goal; TextColor3 = color3}):Play()
+		else
+			TweenService:Create(item,TweenInfo.new(_time, Enum.EasingStyle.Cubic, Enum.EasingDirection.Out,0,false,0), {TextTransparency = goal}):Play()
+		end
+		
+		if y then
+			TweenService:Create(item,TweenInfo.new(_time, Enum.EasingStyle.Cubic, Enum.EasingDirection.In,0,false,0), {TextTransparency = goal}):Play()
+		end
+	
+	end
+	
+	local function Btransparency(item, goal, _time, color, color3)
+		if color then
+			TweenService:Create(item,TweenInfo.new(_time, Enum.EasingStyle.Cubic, Enum.EasingDirection.Out,0,false,0), {BackgroundTransparency = goal; BackgroundColor3 = color3}):Play()
+		else
+			TweenService:Create(item,TweenInfo.new(_time, Enum.EasingStyle.Cubic, Enum.EasingDirection.Out,0,false,0), {BackgroundTransparency = goal}):Play()
+		end
+	
+	end
+	
+	local function Itransparency(item, goal, _time, color, color3)
+		if color then
+			TweenService:Create(item,TweenInfo.new(_time, Enum.EasingStyle.Cubic, Enum.EasingDirection.Out,0,false,0), {ImageTransparency = goal; ImageColor3 = color3}):Play()
+		else
+			TweenService:Create(item,TweenInfo.new(_time, Enum.EasingStyle.Cubic, Enum.EasingDirection.Out,0,false,0), {ImageTransparency = goal}):Play()
+		end
+	
+	end
+	
+	local function clear()
+		for i,value in pairs(Loader:GetChildren()) do
+			transparency(value, 1, 2.5, false, nil, true)
+		end
+		wait(3)
+		transparency(Loader.Check7, 0, 2.5, false, nil, false)
+	end
+	--// Scripts
+	local function found(gameScripts, _Game, name)
+		for _, v in pairs(gameScripts[_Game]) do
+			if v == name then
+				return true
+			end
+		end
+	end
+	
+	local function runScript(_Game, name)
+		
+		local EN = found(gameScripts, _Game, name)
+		
+		
+		
+		if EN then
+			if _Game == "Ch4mpus's Place" then
+				if name == "Speed" then
+					_Workspace[_Players.LocalPlayer.Name].Humanoid.WalkSpeed = 24
+				elseif name == "Jump" then
+					_Workspace[_Players.LocalPlayer.Name].Humanoid.JumpPower = 70
+				end
+			elseif _Game == "The Rake" then
+				if name == "Crate ESP" then
+					local ef = _Workspace["SupplyCrates"]:FindFirstChild("Box")
+					if ef then
+						game.StarterGui:SetCore("SendNotification", {
+							Title = "LootBox"; -- Fill "" with your desired text
+							Text = "Position : "..ef:FindFirstChildWhichIsA("Part").Position; -- [i]Fill "" with your desired text[/i]
+							Icon = ""; -- Image Asset (rbxassetid//1
+							Duration = 5; -- How long you want the pop-up to last
+						})
+					end
+					
+				end
+			elseif _Game == "Paradise Life" then
+				--//
+			end
+		else
+			--// Does nothing :]
+		end
+		
+	end
+	
+	local function addScript(string_)
+		if st == 0 then
+			local f = SF.SP1:Clone()
+			f.Parent = SF
+			f.Name = "st"..st+1
+			st = st+1
+			f.Text = string_
+			--//
+			f.MouseButton1Down:Connect(function()
+				print("Down")
+				local _game = games[game.GameId]
+				runScript(_game, f.Text)
+			end)
+			--//
+			return f
+		elseif st > 0 then
+			print("Switch-1")
+			local f = SF.SP1:Clone()
+			f.Parent = SF
+			f.Name = "st"..st+1
+			f.Text = string_
+			f.Position = SF["st"..st].Position + UDim2.new(0,0, .05, 0)
+			st = st+1
+			--//
+			f.MouseButton1Down:Connect(function()
+				local _game = games[game.GameId]
+				runScript(_game, f.Text)
+			end)
+			--//
+			return f
+		end
+		
+	end
+	
+	
+	
+	--// End
+	local function hovered()
+		print("J")
+		spawn(function()
+			Itransparency(Selector.ScriptHub, 0, 0, true, Color3.new(255,255,255), false)
+		end)	
+	end
+	
+	local function hoverEnded()
+		print("L")
+		spawn(function()
+			Itransparency(Selector.ScriptHub, 0, 1, true, Color3.new(0,0,0), true)
+		end)
+	end
+	
+	local function scriptPage()
+		local _game = games[game.PlaceId]
+		transparency(Loader.Check7, 1, 1, false, nil, true)
+		wait(1.5)
+		transparency(Background.ScriptHub.Text1, 0, 2, false, nil, false)
+		wait(2.3)
+		Btransparency(Background.ScriptHub.ScrollingFrame,0 ,2, false, nil, false)
+		Btransparency(Background.ScriptHub.LestFrame,0 ,2, false, nil, false)
+		Background.ScriptHub.LestFrame.Text2.Text = _game
+		wait(2.1)
+		transparency(Background.ScriptHub.LestFrame.Text1,0 ,2, false, nil, false)
+		transparency(Background.ScriptHub.LestFrame.Text2,0 ,2, false, nil, false)
+		--// Scripts
+		for intel, x in pairs(gameScripts[_game]) do
+			local e = addScript(x)
+			Btransparency(e, 0, 1, false, nil, false)
+			transparency(e, 0, 1, false, nil, false)
+			wait(1.3)
+		end
+	end
+	
+	--// Set Up
+	require(script.Parent.DragModule)
+	UserInput.InputBegan:Connect(E_Pressed)
+	waitTil()
+	transparency(Loader.Check1, 0, 3, false, nil)
+	
+	local p = validatePlayer()
+	local g = validateGame()
+	local s = validateSide()
+	wait(3)
+	if not p then
+		print("P")
+		transparency(Loader.Check2, 0, 2, true, Color3.new(200,0,0))
+	else
+		transparency(Loader.Check2, 0, 2, true, Color3.new(0,200,0))
+	end
+	wait(2.5)
+	
+	if not g then
+		print("P")
+		transparency(Loader.Check3, 0, 2, true, Color3.new(200,0,0))
+	else
+		transparency(Loader.Check3, 0, 2, true, Color3.new(0,200,0))
+	end
+	wait(2.5)
+	
+	if not s then
+		transparency(Loader.Check4, 0, 2, true, Color3.new(200,0,0))
+	else
+		transparency(Loader.Check4, 0, 2, true, Color3.new(0,200,0))
+	end
+	
+	
+	wait(5)
+	if not validate(p,g,s) then
+		transparency(Loader.Check5, 0, 2, true, Color3.new(200,0,0))
+		wait(2.5)
+		transparency(Loader.Check6, 0, 2, false, nil)
+		canClose = true
+	else
+		transparency(Loader.Check5, 0, 2, true, Color3.new(0,200,0))
+		Selector:TweenSizeAndPosition(selectPos.Size1, selectPos.Pos1)
+		wait(3)
+		Itransparency(Selector.ScriptHub, 0, 2, false, nil)
+		wait(5)
+		clear()
+	end
+	--// End of Setup
+	--// Main Code
+	
+	Selector.ScriptHub.MouseEnter:Connect(hovered)
+	
+	Selector.ScriptHub.MouseLeave:Connect(hoverEnded)
+	
+	Selector.ScriptHub.MouseButton1Down:Connect(scriptPage)
+	
+	
+	
+	
+	--// End
+end
+coroutine.wrap(clientSide)()
