@@ -2,6 +2,7 @@
 
 local PrismaticUI = Instance.new("ScreenGui")
 local Background = Instance.new("Frame")
+--local UIGradient = Instance.new("UIGradient")
 local Loader = Instance.new("Frame")
 local Check1 = Instance.new("TextLabel")
 local Check2 = Instance.new("TextLabel")
@@ -33,6 +34,10 @@ Background.BorderColor3 = Color3.fromRGB(33, 51, 65)
 Background.BorderSizePixel = 0
 Background.Position = UDim2.new(0.254562855, 0, 0.225578874, 0)
 Background.Size = UDim2.new(0, 520, 0, 282)
+
+--UIGradient.Color = ColorSequence.new()
+
+
 
 Loader.Name = "Loader"
 Loader.Parent = Background
@@ -314,13 +319,15 @@ local function clientSide() -- Background.MainClient
 
 
 	--// Tables
-	local gameIds = {2413927524, 6416764356, 4966566022,155615604}
+	local gameIds = {2413927524, 6416764356, 4966566022,155615604,4623386862,1262182609}
 
 	local games = {
 		[2413927524] = "The Rake";
 		[6416764356] = "Ch4mpus's Place";
 		[4966566022] = "Paradise Life";
 		[155615604] = "Prison Life";
+		[4623386862] = "Piggy";
+		[1262182609] = "Booga Booga";
 	}
 
 	local selectPos = {
@@ -360,8 +367,19 @@ local function clientSide() -- Background.MainClient
 			"Arrest Aura";
 			"Speed";
 			"AK47";
-			"Super Punch"
+			"Taze Bypass";
+			"Jump";
+			"Break Doors";
 		};
+		
+		["Piggy"] ={
+			"B-Tools";
+		};
+		
+		["Booga Booga"] ={
+			"Speed";
+			"Jump";
+		}
 	}
 
 	--// Functions
@@ -684,7 +702,7 @@ local function clientSide() -- Background.MainClient
 
 					end
 				elseif name == "Escape Prison" then
-					_Workspace[_Players.LocalPlayer.Name].HumanoidRootPart.Position = Vector3.new(-943.92, 97.335, 2058.05)
+					_Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-943, 96, 2055)
 				elseif name == "AK47" then
 					local Weapon = {"AK-47"}
 					for i,v in pairs(workspace.Prison_ITEMS.giver:GetChildren()) do
@@ -693,7 +711,10 @@ local function clientSide() -- Background.MainClient
 						end
 					end
 				elseif name == "TP to Prison" then
+					_Workspace[_Players.LocalPlayer.Name].HumanoidRootPart.Anchored = true
 					_Workspace[_Players.LocalPlayer.Name].HumanoidRootPart.Position = Vector3.new(897.31, 143.763, 2438.97)
+					wait(2)
+					_Workspace[_Players.LocalPlayer.Name].HumanoidRootPart.Anchored = false
 				elseif name == "Arrest Aura" then
 					while wait(.9) do
 						for i = 1,10 do
@@ -708,8 +729,49 @@ local function clientSide() -- Background.MainClient
 					end
 				elseif name == "Speed" then
 					_Workspace[_Players.LocalPlayer.Name].Humanoid.WalkSpeed = 60
-				elseif name == "Super Punch" then
-					
+				elseif name == "Taze Bypass" then
+					_Players.LocalPlayer.Character.ClientInputHandler.Disabled = true
+					_Players.LocalPlayer.CharacterAdded:connect(function()
+						_Workspace:WaitForChild(game.Players.LocalPlayer.Name)
+						_Players.LocalPlayer.Character.ClientInputHandler.Disabled = true
+					end)
+				elseif name == "Jump" then
+					_Workspace[_Players.LocalPlayer.Name].Humanoid.JumpPower = 400
+				elseif name == "Break Doors" then
+					_Workspace.Prison_Cellblock.doors:Destroy()
+
+					for i,v in pairs(_Workspace:GetChildren())do
+						if v.Name == "Doors" then
+							v:Destroy()
+						end
+					end
+				elseif name == "Mod Gun" then
+					local m = require(game:GetService('Players').LocalPlayer.Character:FindFirstChildOfClass("Tool").GunStates)
+					m.Damage = 100
+					m.MaxAmmo = math.huge
+					m.CurrentAmmo = math.huge
+					m.AutoFire = true
+					m.FireRate = 0
+				end
+			elseif _Game == "Piggy" then
+				if name == "B-Tools" then
+					local tool1 = Instance.new("HopperBin",game.Players.LocalPlayer.Backpack)
+					local tool2 = Instance.new("HopperBin",game.Players.LocalPlayer.Backpack)
+					local tool3 = Instance.new("HopperBin",game.Players.LocalPlayer.Backpack)
+					local tool4 = Instance.new("HopperBin",game.Players.LocalPlayer.Backpack)
+					local tool5 = Instance.new("HopperBin",game.Players.LocalPlayer.Backpack)
+					tool1.BinType = "Clone"
+					tool2.BinType = "GameTool"
+					tool3.BinType = "Hammer"
+					tool4.BinType = "Script"
+					tool5.BinType = "Grab"
+			
+				end
+			elseif _Game == "Booga Booga" then
+				if name == "Speed" then
+					_Workspace[_Players.LocalPlayer.Name].Humanoid.WalkSpeed = 34
+				elseif name == "Jump" then
+					_Workspace[_Players.LocalPlayer.Name].Humanoid.JumpPower = 350
 				end
 			end
 		else
@@ -853,3 +915,4 @@ local function clientSide() -- Background.MainClient
 	--// End
 end
 coroutine.wrap(clientSide)()
+
