@@ -1,4 +1,6 @@
 --// Prismatic Hub, Made by Ch4mpus.
+--// Have fun with the scripts! Some of them are personally made by me; others made by other people, credit to them.
+--// This project is open source on github.
 
 local PrismaticUI = Instance.new("ScreenGui")
 local Background = Instance.new("Frame")
@@ -343,6 +345,7 @@ local function clientSide() -- Background.MainClient
 			"More lines 2";
 			"More lines 3";
 			"More lines 4";
+			"Debug"
 
 		};
 
@@ -364,7 +367,7 @@ local function clientSide() -- Background.MainClient
 			"Kill Aura";
 			"Escape Prison";
 			"TP to Prison";
-			"Arrest Aura";
+			"Arrest Crims";
 			"Speed";
 			"AK47";
 			"Taze Bypass";
@@ -381,6 +384,8 @@ local function clientSide() -- Background.MainClient
 			"Jump";
 		}
 	}
+	
+	local errors = {}
 
 	--// Functions
 	local function waitTil()
@@ -433,14 +438,69 @@ local function clientSide() -- Background.MainClient
 
 	local function E_Pressed(input, typing)
 		if typing == false then
+			print("yes")
 			if input.KeyCode == Enum.KeyCode.E then
 				if canClose then
 					MainUI:Remove()
 				end
-			elseif input.KeyCode == Enum.KeyCode.F then
-				if canClose then
-					loadstring(game:GetObjects("rbxassetid://418957341")[1].Source)()
+			end
+		end
+	end
+	
+	local function o_pressed(input, typing)
+		if input.KeyCode == Enum.KeyCode.F2 then
+			print("f2")
+			for _,v in pairs(errors) do
+				local c = Instance.new("Frame")
+				c.Parent = PrismaticUI
+				c.BackgroundTransparency = 0
+				c.BorderSizePixel = 0
+				c.Position = UDim2.new(0.234, 0,0.346, 0)
+				c.Size = UDim2.new(0, 369,0, 178)
+
+				local t = Instance.new("TextLabel")
+				t.Parent = c
+				t.Font = Enum.Font.Gotham
+				t.BorderSizePixel = 0
+				t.Position = UDim2.new(0.228, 0,0, 0)
+				t.Size = UDim2.new(0, 200,0, 50)
+				t.TextSize = 24
+				t.Text = "Prism Hub"
+				t.TextColor3 = Color3.new(0, 255, 234)
+				t.TextStrokeColor3 = Color3.new(19, 122, 113)
+				t.TextStrokeTransparency = 0
+				t.TextTransparency = 0
+				t.BackgroundTransparency = 1
+
+				local t1 = Instance.new("TextLabel")
+				t1.Parent = c
+				t1.Font = Enum.Font.Gotham
+				t1.BorderSizePixel = 0
+				t1.Position = UDim2.new(0.228, 0,0.36, 0)
+				t1.Size = UDim2.new(0, 200,0, 18)
+				t1.TextSize = 12
+				t1.Text = v
+				t1.TextColor3 = Color3.new(255, 255, 255)
+				t1.TextStrokeColor3 = Color3.new(0, 0, 0)
+				t1.TextStrokeTransparency = 0
+				t1.TextTransparency = 0
+				t1.BackgroundTransparency = 1
+
+				function updateDrag(ui, udim)
+					ui:TweenPosition(udim, Enum.EasingDirection.Out, Enum.EasingStyle.Quad, .3, true)
 				end
+
+				c.InputBegan:Connect(function(input)
+					local ms = game.Players.LocalPlayer:GetMouse()
+					if input.UserInputType == Enum.UserInputType.MouseButton1 then
+						repeat
+							wait(.01)
+							local x = ms.X
+							local y = ms.Y
+							updateDrag(c, UDim2.new(0,x, 0,y))
+						until not UserInput:IsMouseButtonPressed(Enum.UserInputType.MouseButton1)
+					end
+				end)
 			end
 		end
 	end
@@ -478,7 +538,7 @@ local function clientSide() -- Background.MainClient
 
 	local function clear()
 		for i,value in pairs(Loader:GetChildren()) do
-			transparency(value, 1, 2.5, false, nil, true)
+			transparency(value, 1, 2.5, true, Color3.new(255,255,255),true)
 		end
 		wait(3)
 		transparency(Loader.Check7, 0, 2.5, false, nil, false)
@@ -506,6 +566,14 @@ local function clientSide() -- Background.MainClient
 					_Workspace[_Players.LocalPlayer.Name].Humanoid.WalkSpeed = 24
 				elseif name == "Jump" then
 					_Workspace[_Players.LocalPlayer.Name].Humanoid.JumpPower = 70
+				elseif name == "Debug" then
+					local s, e = pcall(function()
+						_Workspace["Wfuawnfas"].Humanoid = 2
+					end)
+					
+					if not s then
+						table.insert(errors,#errors +1 ,e)
+					end
 				end
 			elseif _Game == "The Rake" then
 				if name == "Crate ESP" then
@@ -689,82 +757,142 @@ local function clientSide() -- Background.MainClient
 				if name == "Kill Aura" then
 					--// Kill Aura
 					while wait(.9) do
-						wait()
-						--// Forever
-						for i, plr in pairs(_Players:GetChildren()) do
-							if plr.Name ~= _Players.LocalPlayer.Name then
-								for i = 1,5 do 
-									--// Fires Knife Event, which makes the player take damage.
-									_ReplicatedStorage.meleeEvent:FireServer(plr)
+						local s, e = pcall(function()
+							for i, plr in pairs(_Players:GetChildren()) do
+								if plr.Name ~= _Players.LocalPlayer.Name then
+									for i = 1,5 do 
+										--// Fires Knife Event, which makes the player take damage.
+										_ReplicatedStorage.meleeEvent:FireServer(plr)
+									end
 								end
 							end
+						end)
+						--// Forever
+						
+						if not s then
+							table.insert(errors,#errors +1 ,e)
 						end
 
 					end
 				elseif name == "Escape Prison" then
-					_Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-943, 96, 2055)
-				elseif name == "AK47" then
-					local Weapon = {"AK-47"}
-					for i,v in pairs(workspace.Prison_ITEMS.giver:GetChildren()) do
-						if v.Name == Weapon[1] then
-							local lol = workspace.Remote.ItemHandler:InvokeServer(v.ITEMPICKUP)
-						end
+					local s, e = pcall(function()
+						_Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-943, 96, 2055)
+					end)
+					
+					if not s then
+						table.insert(errors,#errors +1 ,e)
 					end
+				
+				elseif name == "AK47" then
+					local s, e = pcall(function()
+						local Weapon = {"AK-47"}
+						for i,v in pairs(workspace.Prison_ITEMS.giver:GetChildren()) do
+							if v.Name == Weapon[1] then
+								local lol = workspace.Remote.ItemHandler:InvokeServer(v.ITEMPICKUP)
+							end
+						end
+					end)
+					
+					if not s then
+						table.insert(errors,#errors +1 ,e)
+					end
+					
 				elseif name == "TP to Prison" then
 					_Workspace[_Players.LocalPlayer.Name].HumanoidRootPart.Anchored = true
 					_Workspace[_Players.LocalPlayer.Name].HumanoidRootPart.Position = Vector3.new(897.31, 143.763, 2438.97)
 					wait(2)
 					_Workspace[_Players.LocalPlayer.Name].HumanoidRootPart.Anchored = false
-				elseif name == "Arrest Aura" then
-					while wait(.9) do
-						for i = 1,10 do
-							local arrestEvent = _Workspace.Remote.arrest
-							for _, plr in pairs (game:GetService('Players'):GetChildren()) do
-								if plr.Name ~= _Players.LocalPlayer.Name then
-									local obj = plr.Character.HumanoidRootPart
-									local response =arrestEvent:InvokeServer(obj)
-								end
+				elseif name == "Arrest Crims" then
+					local s, e = pcall(function()
+						local teams = game:GetService("Teams"):GetTeams()
+						local c = nil
+						
+						for i, team in pairs(teams) do
+							if team.Name == "Criminals" then
+								c = team:GetPlayers()
 							end
 						end
+						
+						for intel, crim in pairs(c) do
+							local crim_char = _Workspace:FindFirstChild(crim.Name)
+							local char = _Workspace:WaitForChild(_Players.LocalPlayer.Name)
+							
+							if crim_char and crim ~= _Players.LocalPlayer then
+								char.HumanoidRootPart.CFrame = crim_char.HumanoidRootPart.CFrame
+								local arrestEvent = _Workspace.Remote.arrest:InvokeServer(crim_char.HumanoidRootPart)
+							end
+						end	
+					end)
+						
+					if not s then
+						table.insert(errors,#errors +1 ,e)
 					end
+						
 				elseif name == "Speed" then
 					_Workspace[_Players.LocalPlayer.Name].Humanoid.WalkSpeed = 60
 				elseif name == "Taze Bypass" then
-					_Players.LocalPlayer.Character.ClientInputHandler.Disabled = true
-					_Players.LocalPlayer.CharacterAdded:connect(function()
-						_Workspace:WaitForChild(game.Players.LocalPlayer.Name)
+					local s, e = pcall(function()
 						_Players.LocalPlayer.Character.ClientInputHandler.Disabled = true
+						_Players.LocalPlayer.CharacterAdded:connect(function()
+							_Workspace:WaitForChild(game.Players.LocalPlayer.Name)
+							_Players.LocalPlayer.Character.ClientInputHandler.Disabled = true
+						end)
 					end)
+					
+					if not s then
+						table.insert(errors,#errors +1 ,e)
+					end
 				elseif name == "Jump" then
 					_Workspace[_Players.LocalPlayer.Name].Humanoid.JumpPower = 400
 				elseif name == "Break Doors" then
-					_Workspace.Prison_Cellblock.doors:Destroy()
+					local s, e = pcall(function()
+						_Workspace.Prison_Cellblock.doors:Destroy()
 
-					for i,v in pairs(_Workspace:GetChildren())do
-						if v.Name == "Doors" then
-							v:Destroy()
+						for i,v in pairs(_Workspace:GetChildren())do
+							if v.Name == "Doors" then
+								v:Destroy()
+							end
 						end
+					end)
+					
+					if not s then
+						table.insert(errors,#errors +1 ,e)
 					end
+					
 				elseif name == "Mod Gun" then
-					local m = require(game:GetService('Players').LocalPlayer.Character:FindFirstChildOfClass("Tool").GunStates)
-					m.Damage = 100
-					m.MaxAmmo = math.huge
-					m.CurrentAmmo = math.huge
-					m.AutoFire = true
-					m.FireRate = 0
+					local s, e = pcall(function()
+						local m = require(game:GetService('Players').LocalPlayer.Character:FindFirstChildOfClass("Tool").GunStates)
+						m.Damage = 100
+						m.MaxAmmo = math.huge
+						m.CurrentAmmo = math.huge
+						m.AutoFire = true
+						m.FireRate = 0
+					end)
+					
+					if not s then
+						table.insert(errors,#errors +1 ,e)
+					end
+					
 				end
 			elseif _Game == "Piggy" then
 				if name == "B-Tools" then
-					local tool1 = Instance.new("HopperBin",game.Players.LocalPlayer.Backpack)
-					local tool2 = Instance.new("HopperBin",game.Players.LocalPlayer.Backpack)
-					local tool3 = Instance.new("HopperBin",game.Players.LocalPlayer.Backpack)
-					local tool4 = Instance.new("HopperBin",game.Players.LocalPlayer.Backpack)
-					local tool5 = Instance.new("HopperBin",game.Players.LocalPlayer.Backpack)
-					tool1.BinType = "Clone"
-					tool2.BinType = "GameTool"
-					tool3.BinType = "Hammer"
-					tool4.BinType = "Script"
-					tool5.BinType = "Grab"
+					local s, e = pcall(function()
+						local tool1 = Instance.new("HopperBin",game.Players.LocalPlayer.Backpack)
+						local tool2 = Instance.new("HopperBin",game.Players.LocalPlayer.Backpack)
+						local tool3 = Instance.new("HopperBin",game.Players.LocalPlayer.Backpack)
+						local tool4 = Instance.new("HopperBin",game.Players.LocalPlayer.Backpack)
+						local tool5 = Instance.new("HopperBin",game.Players.LocalPlayer.Backpack)
+						tool1.BinType = "Clone"
+						tool2.BinType = "GameTool"
+						tool3.BinType = "Hammer"
+						tool4.BinType = "Script"
+						tool5.BinType = "Grab"
+					end)
+					
+					if not s then
+						table.insert(errors,#errors +1 ,e)
+					end
+					
 			
 				end
 			elseif _Game == "Booga Booga" then
@@ -856,6 +984,7 @@ local function clientSide() -- Background.MainClient
 	--// Set Up
 	require(script.Parent.DragModule)
 	UserInput.InputBegan:Connect(E_Pressed)
+
 	waitTil()
 	transparency(Loader.Check1, 0, 3, false, nil)
 
@@ -908,6 +1037,9 @@ local function clientSide() -- Background.MainClient
 	Selector.ScriptHub.MouseLeave:Connect(hoverEnded)
 
 	Selector.ScriptHub.MouseButton1Down:Connect(scriptPage)
+	
+	wait(3)
+	UserInput.InputBegan:Connect(o_pressed)
 
 
 
@@ -915,4 +1047,3 @@ local function clientSide() -- Background.MainClient
 	--// End
 end
 coroutine.wrap(clientSide)()
-
