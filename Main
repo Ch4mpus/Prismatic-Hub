@@ -1,4 +1,4 @@
-	--// Prismatic Hub, Made by Ch4mpus.
+--// Prismatic Hub, Made by Ch4mpus.
 
 local PrismaticUI = Instance.new("ScreenGui")
 local Background = Instance.new("Frame")
@@ -343,6 +343,8 @@ local function clientSide() -- Background.MainClient
 			"Crate ESP";
 			"Rake Radar";
 			"No Fog";
+			"Flare Radar";
+			"Crate Track";
 
 		};
 
@@ -357,7 +359,8 @@ local function clientSide() -- Background.MainClient
 			"TP to Prison";
 			"Arrest Aura";
 			"Speed";
-			"AK47"
+			"AK47";
+			"Super Punch"
 		};
 	}
 
@@ -569,18 +572,94 @@ local function clientSide() -- Background.MainClient
 							end
 					end)
 					
-					Btransparency(c, 0, 1, true, Color3.fromRGB(21,21,21))
-					wait(1.2)
+					Btransparency(c, 0, 1.5, true, Color3.fromRGB(21,21,21))
+					wait(1.7)
 					transparency(t, 0, 1, false)
 					transparency(t1, 0, 1, false)
 					
 					while wait(.5) do
-						t1.Text = "Rake's distance from you is"..(_Workspace.Rake:FindFirstChildWhichIsA("Part").Position - _Workspace[_Players.LocalPlayer.Name].HumanoidRootPart.Position).magnitude
+						if _Workspace:FindFirstChild("Rake") then
+							t1.Text = "Rake's distance from you is "..math.floor((_Workspace.Rake:FindFirstChildWhichIsA("Part").Position - _Workspace[_Players.LocalPlayer.Name].HumanoidRootPart.Position).magnitude)
+						end	
 					end
 						
 					    
 				elseif name == "No Fog" then
-					game.Lighting.FogEnd = 999999999 
+					while wait() do
+						game:GetService("ReplicatedStorage").CurrentLightingProperties.BRIGHTNESS.Value = 50
+
+						game:GetService("ReplicatedStorage").CurrentLightingProperties.FOGEND.Value = 999999
+					end
+				elseif name == "Flare Radar" then
+					local c = Instance.new("Frame")
+					c.Parent = PrismaticUI
+					c.BackgroundTransparency = 1
+					c.BorderSizePixel = 0
+					c.Position = UDim2.new(0.234, 0,0.346, 0)
+					c.Size = UDim2.new(0, 369,0, 178)
+
+					local t = Instance.new("TextLabel")
+					t.Parent = c
+					t.Font = Enum.Font.Gotham
+					t.BorderSizePixel = 0
+					t.Position = UDim2.new(0.228, 0,0, 0)
+					t.Size = UDim2.new(0, 200,0, 50)
+					t.TextSize = 24
+					t.Text = "Prism Hub"
+					t.TextColor3 = Color3.new(0, 255, 234)
+					t.TextStrokeColor3 = Color3.new(19, 122, 113)
+					t.TextStrokeTransparency = 0
+					t.TextTransparency = 1
+					t.BackgroundTransparency = 1
+
+					local t1 = Instance.new("TextLabel")
+					t1.Parent = c
+					t1.Font = Enum.Font.Gotham
+					t1.BorderSizePixel = 0
+					t1.Position = UDim2.new(0.228, 0,0.36, 0)
+					t1.Size = UDim2.new(0, 200,0, 18)
+					t1.TextSize = 20
+					t1.Text = "Rake's Distance is"
+					t1.TextColor3 = Color3.new(255, 255, 255)
+					t1.TextStrokeColor3 = Color3.new(0, 0, 0)
+					t1.TextStrokeTransparency = 0
+					t1.TextTransparency = 1
+					t1.BackgroundTransparency = 1
+
+					function updateDrag(ui, udim)
+						ui:TweenPosition(udim, Enum.EasingDirection.Out, Enum.EasingStyle.Quad, .3, true)
+					end
+
+					c.InputBegan:Connect(function(input)
+						local ms = game.Players.LocalPlayer:GetMouse()
+						if input.UserInputType == Enum.UserInputType.MouseButton1 then
+							repeat
+								wait(.01)
+								local x = ms.X
+								local y = ms.Y
+								updateDrag(c, UDim2.new(0,x, 0,y))
+							until not UserInput:IsMouseButtonPressed(Enum.UserInputType.MouseButton1)
+						end
+					end)
+
+					Btransparency(c, 0, 1.5, true, Color3.fromRGB(21,21,21))
+					wait(1.7)
+					transparency(t, 0, 1, false)
+					transparency(t1, 0, 1, false)
+					
+					while wait() do
+						local x = _Workspace:FindFirstChild("FlareGunPickUp")
+						if x then
+							t1.Text = "Flare coordinates are "..x.FlareGun.Position.X..", "..x.FlareGun.Position.Y
+						end
+					end
+					
+				elseif name == "Crate Track" then
+					while wait(11) do
+						if _Workspace.SupplyCrates:FindFirstChild("Box") then
+							_Workspace[_Players.LocalPlayer.Name].HumanoidRootPart.Position = _Workspace.SupplyCrates.Box.Position
+						end
+					end
 				end
 			elseif _Game == "Paradise Life" then
 				if name == "Speed" then
@@ -629,6 +708,8 @@ local function clientSide() -- Background.MainClient
 					end
 				elseif name == "Speed" then
 					_Workspace[_Players.LocalPlayer.Name].Humanoid.WalkSpeed = 60
+				elseif name == "Super Punch" then
+					
 				end
 			end
 		else
