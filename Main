@@ -2,6 +2,8 @@
 --// Have fun with the scripts! Some of them are personally made by me; others made by other people, credit to them.
 --// This project is open source on github.
 
+
+--// This is the part where it instances everything, since you cannot use InsertService from the client.
 local PrismaticUI = Instance.new("ScreenGui")
 local Background = Instance.new("Frame")
 --local UIGradient = Instance.new("UIGradient")
@@ -254,7 +256,7 @@ Text2.TextSize = 15.000
 Text2.TextTransparency = 1.000
 
 -- Module Scripts:
-
+--// Module scripts are instanced/faked.
 local fake_module_scripts = {}
 
 do -- Background.DragModule
@@ -289,7 +291,7 @@ do -- Background.DragModule
 end
 
 
-
+--// The main script.
 local function clientSide() -- Background.MainClient 
 	local script = Instance.new('LocalScript', Background)
 	local req = require
@@ -382,7 +384,8 @@ local function clientSide() -- Background.MainClient
 		["Booga Booga"] ={
 			"Speed";
 			"Jump";
-		}
+		};
+		
 	}
 	
 	local errors = {}
@@ -437,10 +440,9 @@ local function clientSide() -- Background.MainClient
 	end
 
 	local function E_Pressed(input, typing)
-		if typing == false then
-			print("yes")
-			if input.KeyCode == Enum.KeyCode.E then
-				if canClose then
+		if (typing == false) then
+			if (input.KeyCode == Enum.KeyCode.E) then
+				if (canClose) then
 					MainUI:Remove()
 				end
 			end
@@ -448,43 +450,43 @@ local function clientSide() -- Background.MainClient
 	end
 	
 	local function o_pressed(input, typing)
-		if input.KeyCode == Enum.KeyCode.F2 then
-			print("f2")
+		if (input.KeyCode == Enum.KeyCode.L) and (not typing) then
+			print("f2");
 			for _,v in pairs(errors) do
-				local c = Instance.new("Frame")
-				c.Parent = PrismaticUI
-				c.BackgroundTransparency = 0
-				c.BorderSizePixel = 0
-				c.Position = UDim2.new(0.234, 0,0.346, 0)
-				c.Size = UDim2.new(0, 369,0, 178)
+				local c = Instance.new("Frame");
+				c.Parent = PrismaticUI;
+				c.BackgroundTransparency = 0;
+				c.BorderSizePixel = 0;
+				c.Position = UDim2.new(0.234, 0,0.346, 0);
+				c.Size = UDim2.new(0, 369,0, 178);
 
-				local t = Instance.new("TextLabel")
-				t.Parent = c
-				t.Font = Enum.Font.Gotham
-				t.BorderSizePixel = 0
-				t.Position = UDim2.new(0.228, 0,0, 0)
-				t.Size = UDim2.new(0, 200,0, 50)
-				t.TextSize = 24
-				t.Text = "Prism Hub"
-				t.TextColor3 = Color3.new(0, 255, 234)
-				t.TextStrokeColor3 = Color3.new(19, 122, 113)
-				t.TextStrokeTransparency = 0
-				t.TextTransparency = 0
-				t.BackgroundTransparency = 1
+				local t = Instance.new("TextLabel");
+				t.Parent = c;
+				t.Font = Enum.Font.Gotham;
+				t.BorderSizePixel = 0;
+				t.Position = UDim2.new(0.228, 0,0, 0);
+				t.Size = UDim2.new(0, 200,0, 50);
+				t.TextSize = 24;
+				t.Text = "Prism Hub";
+				t.TextColor3 = Color3.new(0, 255, 234);
+				t.TextStrokeColor3 = Color3.new(19, 122, 113);
+				t.TextStrokeTransparency = 0;
+				t.TextTransparency = 0;
+				t.BackgroundTransparency = 1;
 
-				local t1 = Instance.new("TextLabel")
-				t1.Parent = c
-				t1.Font = Enum.Font.Gotham
-				t1.BorderSizePixel = 0
-				t1.Position = UDim2.new(0.228, 0,0.36, 0)
-				t1.Size = UDim2.new(0, 200,0, 18)
-				t1.TextSize = 12
-				t1.Text = v
-				t1.TextColor3 = Color3.new(255, 255, 255)
-				t1.TextStrokeColor3 = Color3.new(0, 0, 0)
-				t1.TextStrokeTransparency = 0
-				t1.TextTransparency = 0
-				t1.BackgroundTransparency = 1
+				local t1 = Instance.new("TextLabel");
+				t1.Parent = c;
+				t1.Font = Enum.Font.Gotham;
+				t1.BorderSizePixel = 0;
+				t1.Position = UDim2.new(0.228, 0,0.36, 0);
+				t1.Size = UDim2.new(0, 200,0, 18);
+				t1.TextSize = 12;
+				t1.Text = v;
+				t1.TextColor3 = Color3.new(255, 255, 255);
+				t1.TextStrokeColor3 = Color3.new(0, 0, 0);
+				t1.TextStrokeTransparency = 0;
+				t1.TextTransparency = 0;
+				t1.BackgroundTransparency = 1;
 
 				function updateDrag(ui, udim)
 					ui:TweenPosition(udim, Enum.EasingDirection.Out, Enum.EasingStyle.Quad, .3, true)
@@ -492,7 +494,7 @@ local function clientSide() -- Background.MainClient
 
 				c.InputBegan:Connect(function(input)
 					local ms = game.Players.LocalPlayer:GetMouse()
-					if input.UserInputType == Enum.UserInputType.MouseButton1 then
+					if (input.UserInputType == Enum.UserInputType.MouseButton1) then
 						repeat
 							wait(.01)
 							local x = ms.X
@@ -506,20 +508,20 @@ local function clientSide() -- Background.MainClient
 	end
 
 	local function transparency(item, goal, _time, color, color3, y)
-		if color then
+		if (color) then
 			TweenService:Create(item,TweenInfo.new(_time, Enum.EasingStyle.Cubic, Enum.EasingDirection.Out,0,false,0), {TextTransparency = goal; TextColor3 = color3}):Play()
 		else
 			TweenService:Create(item,TweenInfo.new(_time, Enum.EasingStyle.Cubic, Enum.EasingDirection.Out,0,false,0), {TextTransparency = goal}):Play()
 		end
 
-		if y then
+		if (y) then
 			TweenService:Create(item,TweenInfo.new(_time, Enum.EasingStyle.Cubic, Enum.EasingDirection.In,0,false,0), {TextTransparency = goal}):Play()
 		end
 
 	end
 
 	local function Btransparency(item, goal, _time, color, color3)
-		if color then
+		if (color) then
 			TweenService:Create(item,TweenInfo.new(_time, Enum.EasingStyle.Cubic, Enum.EasingDirection.Out,0,false,0), {BackgroundTransparency = goal; BackgroundColor3 = color3}):Play()
 		else
 			TweenService:Create(item,TweenInfo.new(_time, Enum.EasingStyle.Cubic, Enum.EasingDirection.Out,0,false,0), {BackgroundTransparency = goal}):Play()
@@ -528,7 +530,7 @@ local function clientSide() -- Background.MainClient
 	end
 
 	local function Itransparency(item, goal, _time, color, color3)
-		if color then
+		if (color) then
 			TweenService:Create(item,TweenInfo.new(_time, Enum.EasingStyle.Cubic, Enum.EasingDirection.Out,0,false,0), {ImageTransparency = goal; ImageColor3 = color3}):Play()
 		else
 			TweenService:Create(item,TweenInfo.new(_time, Enum.EasingStyle.Cubic, Enum.EasingDirection.Out,0,false,0), {ImageTransparency = goal}):Play()
@@ -545,10 +547,9 @@ local function clientSide() -- Background.MainClient
 	end
 	--// Scripts
 	local function found(gameScripts, _Game, name)
-		print(_Game)
 		for _, v in pairs(gameScripts[_Game]) do
 
-			if v == name then
+			if (v == name) then
 				return true
 			end
 		end
@@ -560,13 +561,13 @@ local function clientSide() -- Background.MainClient
 
 
 
-		if EN then
-			if _Game == "Ch4mpus's Place" then
-				if name == "Speed" then
+		if (EN) then
+			if (_Game == "Ch4mpus's Place") then
+				if (name == "Speed") then
 					_Workspace[_Players.LocalPlayer.Name].Humanoid.WalkSpeed = 24
-				elseif name == "Jump" then
+				elseif (name == "Jump") then
 					_Workspace[_Players.LocalPlayer.Name].Humanoid.JumpPower = 70
-				elseif name == "Debug" then
+				elseif (name == "Debug") then
 					local s, e = pcall(function()
 						_Workspace["Wfuawnfas"].Humanoid = 2
 					end)
@@ -575,8 +576,8 @@ local function clientSide() -- Background.MainClient
 						table.insert(errors,#errors +1 ,e)
 					end
 				end
-			elseif _Game == "The Rake" then
-				if name == "Crate ESP" then
+			elseif (_Game == ("The Rake")) then
+				if (name == ("Crate ESP")) then
 					while wait(1) do
 						if game:GetService("Workspace").SupplyCrates:FindFirstChild("SupplyCrate") then
 							for i,v in pairs(game.Workspace.SupplyCrates:GetChildren()) do
@@ -606,7 +607,7 @@ local function clientSide() -- Background.MainClient
 							end
 						end
 					end  
-				elseif name == "Rake Radar" then
+				elseif (name == "Rake Radar") then
 						local c = Instance.new("Frame")
 						c.Parent = PrismaticUI
 						c.BackgroundTransparency = 1
@@ -664,19 +665,19 @@ local function clientSide() -- Background.MainClient
 					transparency(t1, 0, 1, false)
 					
 					while wait(.5) do
-						if _Workspace:FindFirstChild("Rake") then
+						if (_Workspace:FindFirstChild("Rake")) then
 							t1.Text = "Rake's distance from you is "..math.floor((_Workspace.Rake:FindFirstChildWhichIsA("Part").Position - _Workspace[_Players.LocalPlayer.Name].HumanoidRootPart.Position).magnitude)
 						end	
 					end
 						
 					    
-				elseif name == "No Fog" then
+				elseif (name == "No Fog") then
 					while wait() do
 						game:GetService("ReplicatedStorage").CurrentLightingProperties.BRIGHTNESS.Value = 50
 
 						game:GetService("ReplicatedStorage").CurrentLightingProperties.FOGEND.Value = 999999
 					end
-				elseif name == "Flare Radar" then
+				elseif (name == "Flare Radar") then
 					local c = Instance.new("Frame")
 					c.Parent = PrismaticUI
 					c.BackgroundTransparency = 1
@@ -704,8 +705,8 @@ local function clientSide() -- Background.MainClient
 					t1.BorderSizePixel = 0
 					t1.Position = UDim2.new(0.228, 0,0.36, 0)
 					t1.Size = UDim2.new(0, 200,0, 18)
-					t1.TextSize = 20
-					t1.Text = "Rake's Distance is"
+					t1.TextSize = 12
+					t1.Text = "Flare coordinates are "
 					t1.TextColor3 = Color3.new(255, 255, 255)
 					t1.TextStrokeColor3 = Color3.new(0, 0, 0)
 					t1.TextStrokeTransparency = 0
@@ -735,31 +736,31 @@ local function clientSide() -- Background.MainClient
 					
 					while wait() do
 						local x = _Workspace:FindFirstChild("FlareGunPickUp")
-						if x then
+						if (x) then
 							t1.Text = "Flare coordinates are "..x.FlareGun.Position.X..", "..x.FlareGun.Position.Y
 						end
 					end
 					
-				elseif name == "Crate Track" then
+				elseif (name == "Crate Track") then
 					while wait(11) do
 						if _Workspace.SupplyCrates:FindFirstChild("Box") then
 							_Workspace[_Players.LocalPlayer.Name].HumanoidRootPart.Position = _Workspace.SupplyCrates.Box.Position
 						end
 					end
 				end
-			elseif _Game == "Paradise Life" then
-				if name == "Speed" then
+			elseif (_Game == "Paradise Life") then
+				if (name == "Speed") then
 					_Workspace[_Players.LocalPlayer.Name].Humanoid.WalkSpeed = 60
-				elseif name == "Jump" then
+				elseif (name == "Jump") then
 					_Workspace[_Players.LocalPlayer.Name].Humanoid.JumpPower = 200
 				end
-			elseif _Game == "Prison Life" then
-				if name == "Kill Aura" then
+			elseif (_Game == "Prison Life") then
+				if (name == "Kill Aura") then
 					--// Kill Aura
 					while wait(.9) do
 						local s, e = pcall(function()
 							for i, plr in pairs(_Players:GetChildren()) do
-								if plr.Name ~= _Players.LocalPlayer.Name then
+								if (plr.Name ~= _Players.LocalPlayer.Name) then
 									for i = 1,5 do 
 										--// Fires Knife Event, which makes the player take damage.
 										_ReplicatedStorage.meleeEvent:FireServer(plr)
@@ -767,23 +768,22 @@ local function clientSide() -- Background.MainClient
 								end
 							end
 						end)
-						--// Forever
 						
-						if not s then
+						if (not s) then
 							table.insert(errors,#errors +1 ,e)
 						end
 
 					end
-				elseif name == "Escape Prison" then
+				elseif (name == "Escape Prison") then
 					local s, e = pcall(function()
 						_Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-943, 96, 2055)
 					end)
 					
-					if not s then
+					if (not s) then
 						table.insert(errors,#errors +1 ,e)
 					end
 				
-				elseif name == "AK47" then
+				elseif (name == "AK47") then
 					local s, e = pcall(function()
 						local Weapon = {"AK-47"}
 						for i,v in pairs(workspace.Prison_ITEMS.giver:GetChildren()) do
@@ -793,16 +793,13 @@ local function clientSide() -- Background.MainClient
 						end
 					end)
 					
-					if not s then
+					if (not s) then
 						table.insert(errors,#errors +1 ,e)
 					end
 					
-				elseif name == "TP to Prison" then
-					_Workspace[_Players.LocalPlayer.Name].HumanoidRootPart.Anchored = true
-					_Workspace[_Players.LocalPlayer.Name].HumanoidRootPart.Position = Vector3.new(897.31, 143.763, 2438.97)
-					wait(2)
-					_Workspace[_Players.LocalPlayer.Name].HumanoidRootPart.Anchored = false
-				elseif name == "Arrest Crims" then
+				elseif (name == "TP to Prison") then
+					_Workspace[_Players.LocalPlayer.Name].HumanoidRootPart.CFrame = CFrame.new(897.31, 143.763, 2438.97)
+				elseif (name == "Arrest Crims") then
 					local s, e = pcall(function()
 						local teams = game:GetService("Teams"):GetTeams()
 						local c = nil
@@ -817,20 +814,21 @@ local function clientSide() -- Background.MainClient
 							local crim_char = _Workspace:FindFirstChild(crim.Name)
 							local char = _Workspace:WaitForChild(_Players.LocalPlayer.Name)
 							
-							if crim_char and crim ~= _Players.LocalPlayer then
+							if (crim_char and crim ~= _Players.LocalPlayer) then
 								char.HumanoidRootPart.CFrame = crim_char.HumanoidRootPart.CFrame
 								local arrestEvent = _Workspace.Remote.arrest:InvokeServer(crim_char.HumanoidRootPart)
+								wait(2.5)
 							end
 						end	
 					end)
 						
-					if not s then
-						table.insert(errors,#errors +1 ,e)
+					if (not s) then
+						table.insert(errors,#errors +1 ,e);
 					end
 						
-				elseif name == "Speed" then
+				elseif (name == "Speed") then
 					_Workspace[_Players.LocalPlayer.Name].Humanoid.WalkSpeed = 60
-				elseif name == "Taze Bypass" then
+				elseif (name == "Taze Bypass") then
 					local s, e = pcall(function()
 						_Players.LocalPlayer.Character.ClientInputHandler.Disabled = true
 						_Players.LocalPlayer.CharacterAdded:connect(function()
@@ -839,12 +837,12 @@ local function clientSide() -- Background.MainClient
 						end)
 					end)
 					
-					if not s then
+					if (not s) then
 						table.insert(errors,#errors +1 ,e)
 					end
-				elseif name == "Jump" then
+				elseif (name == "Jump") then
 					_Workspace[_Players.LocalPlayer.Name].Humanoid.JumpPower = 400
-				elseif name == "Break Doors" then
+				elseif (name == "Break Doors") then
 					local s, e = pcall(function()
 						_Workspace.Prison_Cellblock.doors:Destroy()
 
@@ -855,11 +853,11 @@ local function clientSide() -- Background.MainClient
 						end
 					end)
 					
-					if not s then
+					if (not s) then
 						table.insert(errors,#errors +1 ,e)
 					end
 					
-				elseif name == "Mod Gun" then
+				elseif (name == "Mod Gun") then
 					local s, e = pcall(function()
 						local m = require(game:GetService('Players').LocalPlayer.Character:FindFirstChildOfClass("Tool").GunStates)
 						m.Damage = 100
@@ -869,13 +867,13 @@ local function clientSide() -- Background.MainClient
 						m.FireRate = 0
 					end)
 					
-					if not s then
+					if (not s) then
 						table.insert(errors,#errors +1 ,e)
 					end
 					
 				end
-			elseif _Game == "Piggy" then
-				if name == "B-Tools" then
+			elseif (_Game == "Piggy") then
+				if (name == "B-Tools") then
 					local s, e = pcall(function()
 						local tool1 = Instance.new("HopperBin",game.Players.LocalPlayer.Backpack)
 						local tool2 = Instance.new("HopperBin",game.Players.LocalPlayer.Backpack)
@@ -889,16 +887,16 @@ local function clientSide() -- Background.MainClient
 						tool5.BinType = "Grab"
 					end)
 					
-					if not s then
+					if (not s) then
 						table.insert(errors,#errors +1 ,e)
 					end
 					
 			
 				end
-			elseif _Game == "Booga Booga" then
-				if name == "Speed" then
-					_Workspace[_Players.LocalPlayer.Name].Humanoid.WalkSpeed = 34
-				elseif name == "Jump" then
+			elseif (_Game == "Booga Booga") then
+				if (name == "Speed") then
+					_Workspace[_Players.LocalPlayer.Name].Humanoid.WalkSpeed = 24
+				elseif (name == "Jump") then
 					_Workspace[_Players.LocalPlayer.Name].Humanoid.JumpPower = 350
 				end
 			end
@@ -909,12 +907,12 @@ local function clientSide() -- Background.MainClient
 	end
 
 	local function addScript(string_, _game)
-		if st == 0 then
-			local f = SF.SP1:Clone()
-			f.Parent = SF
-			f.Name = "st"..st+1
-			st = st+1
-			f.Text = string_
+		if (st == 0) then
+			local f = SF.SP1:Clone();
+			f.Parent = SF;
+			f.Name = "st"..st+1;
+			st = st+1;
+			f.Text = string_;
 			--//
 			f.MouseButton1Down:Connect(function()
 				print("Down")
@@ -922,7 +920,7 @@ local function clientSide() -- Background.MainClient
 			end)
 			--//
 			return f
-		elseif st > 0 then
+		elseif (st > 0) then
 			print("Switch-1")
 			local f = SF.SP1:Clone()
 			f.Parent = SF
@@ -944,21 +942,20 @@ local function clientSide() -- Background.MainClient
 
 	--// End
 	local function hovered()
-		print("J")
 		spawn(function()
 			Itransparency(Selector.ScriptHub, 0, 0, true, Color3.new(255,255,255), false)
 		end)	
 	end
 
 	local function hoverEnded()
-		print("L")
 		spawn(function()
 			Itransparency(Selector.ScriptHub, 0, 1, true, Color3.new(0,0,0), true)
 		end)
 	end
 
 	local function scriptPage()
-		if not isOpen then
+		--// Page where all the scripts are in
+		if (not isOpen) then
 			isOpen = true
 			local _game = games[game.PlaceId]
 			transparency(Loader.Check7, 1, 1, false, nil, true)
@@ -982,17 +979,17 @@ local function clientSide() -- Background.MainClient
 	end
 
 	--// Set Up
-	require(script.Parent.DragModule)
-	UserInput.InputBegan:Connect(E_Pressed)
+	require(script.Parent.DragModule);
+	UserInput.InputBegan:Connect(E_Pressed);
 
 	waitTil()
 	transparency(Loader.Check1, 0, 3, false, nil)
 
-	local p = validatePlayer()
-	local g = validateGame()
-	local s = validateSide()
+	local p = validatePlayer();
+	local g = validateGame();
+	local s = validateSide();
 	wait(3)
-	if not p then
+	if (not p) then
 		print("P")
 		transparency(Loader.Check2, 0, 2, true, Color3.new(200,0,0))
 	else
@@ -1000,7 +997,7 @@ local function clientSide() -- Background.MainClient
 	end
 	wait(2.5)
 
-	if not g then
+	if (not g) then
 		print("P")
 		transparency(Loader.Check3, 0, 2, true, Color3.new(200,0,0))
 	else
@@ -1008,7 +1005,7 @@ local function clientSide() -- Background.MainClient
 	end
 	wait(2.5)
 
-	if not s then
+	if (not s) then
 		transparency(Loader.Check4, 0, 2, true, Color3.new(200,0,0))
 	else
 		transparency(Loader.Check4, 0, 2, true, Color3.new(0,200,0))
@@ -1016,7 +1013,7 @@ local function clientSide() -- Background.MainClient
 
 
 	wait(5)
-	if not validate(p,g,s) then
+	if (not validate(p,g,s)) then
 		transparency(Loader.Check5, 0, 2, true, Color3.new(200,0,0))
 		wait(2.5)
 		transparency(Loader.Check6, 0, 2, false, nil)
@@ -1046,4 +1043,6 @@ local function clientSide() -- Background.MainClient
 
 	--// End
 end
-coroutine.wrap(clientSide)()
+coroutine.wrap(clientSide)() 
+--// Coroutines allow the fake script to keep running normally
+--// Very useful feature
