@@ -2,6 +2,15 @@
 --// Have fun with the scripts! Some of them are personally made by me; others made by other people, credit to them.
 --// This project is open source on github.
 
+--[[
+
+	CHANGE LOG
+   -----------------------
+	+ Wrapped 3rd party or long scripts with pcalls
+	
+
+]]
+
 
 --// This is the part where it instances everything, since you cannot use InsertService from the client.
 local PrismaticUI = Instance.new("ScreenGui")
@@ -1046,3 +1055,4 @@ end
 coroutine.wrap(clientSide)() 
 --// Coroutines allow the fake script to keep running normally
 --// Very useful feature
+
