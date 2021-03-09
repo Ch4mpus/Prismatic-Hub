@@ -7,25 +7,31 @@
 	CHANGE LOG
    -----------------------
 	+ Wrapped 3rd party or long scripts with pcalls
+	+ New Gradients / Improved UI
 	
 
 ]]
 
-
---// This is the part where it instances everything, since you cannot use InsertService from the client.
-local PrismaticUI = Instance.new("ScreenGui")
+local Prismv2 = Instance.new("ScreenGui")
 local Background = Instance.new("Frame")
---local UIGradient = Instance.new("UIGradient")
 local Loader = Instance.new("Frame")
 local Check1 = Instance.new("TextLabel")
+local UIGradient = Instance.new("UIGradient")
 local Check2 = Instance.new("TextLabel")
+local UIGradient_2 = Instance.new("UIGradient")
 local Check3 = Instance.new("TextLabel")
+local UIGradient_3 = Instance.new("UIGradient")
 local Check4 = Instance.new("TextLabel")
+local UIGradient_4 = Instance.new("UIGradient")
 local Check6 = Instance.new("TextLabel")
+local UIGradient_5 = Instance.new("UIGradient")
 local Check5 = Instance.new("TextLabel")
+local UIGradient_6 = Instance.new("UIGradient")
 local Check7 = Instance.new("TextLabel")
+local UIGradient_7 = Instance.new("UIGradient")
 local Selector = Instance.new("Frame")
 local ScriptHub = Instance.new("ImageButton")
+local UIGradient_8 = Instance.new("UIGradient")
 local ScriptHub_2 = Instance.new("Frame")
 local Text1 = Instance.new("TextLabel")
 local ScrollingFrame = Instance.new("ScrollingFrame")
@@ -33,24 +39,22 @@ local SP1 = Instance.new("TextButton")
 local LestFrame = Instance.new("Frame")
 local Text1_2 = Instance.new("TextLabel")
 local Text2 = Instance.new("TextLabel")
+local UIGradient_9 = Instance.new("UIGradient")
 
+--Properties:
 
-PrismaticUI.Name = "Prismatic UI"
-PrismaticUI.Parent = game.Players.LocalPlayer:WaitForChild("PlayerGui")
-PrismaticUI.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
-PrismaticUI.ResetOnSpawn = false
+Prismv2.Name = "Prism v2"
+Prismv2.Parent = game.Players.LocalPlayer:WaitForChild("PlayerGui")
+Prismv2.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
+Prismv2.ResetOnSpawn = false
 
 Background.Name = "Background"
-Background.Parent = PrismaticUI
-Background.BackgroundColor3 = Color3.fromRGB(21, 21, 21)
+Background.Parent = Prismv2
+Background.BackgroundColor3 = Color3.fromRGB(56, 56, 56)
 Background.BorderColor3 = Color3.fromRGB(33, 51, 65)
 Background.BorderSizePixel = 0
 Background.Position = UDim2.new(0.254562855, 0, 0.225578874, 0)
 Background.Size = UDim2.new(0, 520, 0, 282)
-
---UIGradient.Color = ColorSequence.new()
-
-
 
 Loader.Name = "Loader"
 Loader.Parent = Background
@@ -74,6 +78,9 @@ Check1.TextStrokeTransparency = 0.000
 Check1.TextTransparency = 1.000
 Check1.TextWrapped = true
 
+UIGradient.Color = ColorSequence.new{ColorSequenceKeypoint.new(0.00, Color3.fromRGB(89, 89, 89)), ColorSequenceKeypoint.new(1.00, Color3.fromRGB(179, 179, 179))}
+UIGradient.Parent = Check1
+
 Check2.Name = "Check2"
 Check2.Parent = Loader
 Check2.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
@@ -88,6 +95,9 @@ Check2.TextSize = 14.000
 Check2.TextStrokeTransparency = 0.000
 Check2.TextTransparency = 1.000
 Check2.TextWrapped = true
+
+UIGradient_2.Color = ColorSequence.new{ColorSequenceKeypoint.new(0.00, Color3.fromRGB(89, 89, 89)), ColorSequenceKeypoint.new(1.00, Color3.fromRGB(179, 179, 179))}
+UIGradient_2.Parent = Check2
 
 Check3.Name = "Check3"
 Check3.Parent = Loader
@@ -104,6 +114,9 @@ Check3.TextStrokeTransparency = 0.000
 Check3.TextTransparency = 1.000
 Check3.TextWrapped = true
 
+UIGradient_3.Color = ColorSequence.new{ColorSequenceKeypoint.new(0.00, Color3.fromRGB(89, 89, 89)), ColorSequenceKeypoint.new(1.00, Color3.fromRGB(179, 179, 179))}
+UIGradient_3.Parent = Check3
+
 Check4.Name = "Check4"
 Check4.Parent = Loader
 Check4.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
@@ -119,6 +132,9 @@ Check4.TextStrokeTransparency = 0.000
 Check4.TextTransparency = 1.000
 Check4.TextWrapped = true
 
+UIGradient_4.Color = ColorSequence.new{ColorSequenceKeypoint.new(0.00, Color3.fromRGB(89, 89, 89)), ColorSequenceKeypoint.new(1.00, Color3.fromRGB(179, 179, 179))}
+UIGradient_4.Parent = Check4
+
 Check6.Name = "Check6"
 Check6.Parent = Loader
 Check6.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
@@ -126,13 +142,16 @@ Check6.BackgroundTransparency = 1.000
 Check6.Position = UDim2.new(0.235908151, 0, 0.914893627, 0)
 Check6.Size = UDim2.new(0, 232, 0, 15)
 Check6.Font = Enum.Font.Gotham
-Check6.Text = "Press 'E' to close the GUI; F to open Dark Dex"
+Check6.Text = "Press 'E' to close the GUI"
 Check6.TextColor3 = Color3.fromRGB(255, 255, 255)
-Check6.TextScaled = false
-Check6.TextSize = 20.000
+Check6.TextScaled = true
+Check6.TextSize = 14.000
 Check6.TextStrokeTransparency = 0.000
 Check6.TextTransparency = 1.000
-Check6.TextWrapped = false
+Check6.TextWrapped = true
+
+UIGradient_5.Color = ColorSequence.new{ColorSequenceKeypoint.new(0.00, Color3.fromRGB(89, 89, 89)), ColorSequenceKeypoint.new(1.00, Color3.fromRGB(179, 179, 179))}
+UIGradient_5.Parent = Check6
 
 Check5.Name = "Check5"
 Check5.Parent = Loader
@@ -149,6 +168,9 @@ Check5.TextStrokeTransparency = 0.000
 Check5.TextTransparency = 1.000
 Check5.TextWrapped = true
 
+UIGradient_6.Color = ColorSequence.new{ColorSequenceKeypoint.new(0.00, Color3.fromRGB(89, 89, 89)), ColorSequenceKeypoint.new(1.00, Color3.fromRGB(179, 179, 179))}
+UIGradient_6.Parent = Check5
+
 Check7.Name = "Check7"
 Check7.Parent = Loader
 Check7.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
@@ -164,14 +186,17 @@ Check7.TextStrokeTransparency = 0.000
 Check7.TextTransparency = 1.000
 Check7.TextWrapped = true
 
+UIGradient_7.Color = ColorSequence.new{ColorSequenceKeypoint.new(0.00, Color3.fromRGB(89, 89, 89)), ColorSequenceKeypoint.new(1.00, Color3.fromRGB(179, 179, 179))}
+UIGradient_7.Parent = Check7
+
 Selector.Name = "Selector"
 Selector.Parent = Background
 Selector.BackgroundColor3 = Color3.fromRGB(41, 43, 44)
 Selector.BorderColor3 = Color3.fromRGB(33, 51, 65)
 Selector.BorderSizePixel = 0
 Selector.ClipsDescendants = true
-Selector.Position = UDim2.new(-0.000393031194, 0, -0.00125706452, 0)
-Selector.Size = UDim2.new(0, 0, 0, 281)
+Selector.Position = UDim2.new(-0.000393031194, 0, 0, 0)
+Selector.Size = UDim2.new(0, 0, 0, 280)
 
 ScriptHub.Name = "ScriptHub"
 ScriptHub.Parent = Selector
@@ -181,6 +206,9 @@ ScriptHub.Size = UDim2.new(0, 42, 0, 43)
 ScriptHub.Image = "rbxassetid://817446315"
 ScriptHub.ImageColor3 = Color3.fromRGB(0, 0, 0)
 ScriptHub.ImageTransparency = 1.000
+
+UIGradient_8.Color = ColorSequence.new{ColorSequenceKeypoint.new(0.00, Color3.fromRGB(206, 206, 206)), ColorSequenceKeypoint.new(1.00, Color3.fromRGB(120, 120, 120))}
+UIGradient_8.Parent = Selector
 
 ScriptHub_2.Name = "ScriptHub"
 ScriptHub_2.Parent = Background
@@ -264,8 +292,11 @@ Text2.TextColor3 = Color3.fromRGB(255, 255, 255)
 Text2.TextSize = 15.000
 Text2.TextTransparency = 1.000
 
+UIGradient_9.Color = ColorSequence.new{ColorSequenceKeypoint.new(0.00, Color3.fromRGB(62, 62, 62)), ColorSequenceKeypoint.new(0.72, Color3.fromRGB(59, 59, 59)), ColorSequenceKeypoint.new(0.97, Color3.fromRGB(48, 48, 48)), ColorSequenceKeypoint.new(1.00, Color3.fromRGB(53, 53, 53))}
+UIGradient_9.Parent = Background
+
 -- Module Scripts:
---// Module scripts are instanced/faked.
+
 local fake_module_scripts = {}
 
 do -- Background.DragModule
@@ -279,7 +310,7 @@ do -- Background.DragModule
 		function module.updateDrag(ui, udim)
 			ui:TweenPosition(udim, Enum.EasingDirection.Out, Enum.EasingStyle.Quad, .3, true)
 		end
-
+		
 		script.Parent.InputBegan:Connect(function(input)
 			local ms = game.Players.LocalPlayer:GetMouse()
 			if input.UserInputType == Enum.UserInputType.MouseButton1 then
@@ -291,17 +322,18 @@ do -- Background.DragModule
 				until not UserInputService:IsMouseButtonPressed(Enum.UserInputType.MouseButton1)
 			end
 		end)
-
-
-
+		
+		
+		
 		return module
 	end
 	fake_module_scripts[script] = module_script
 end
 
 
---// The main script.
-local function clientSide() -- Background.MainClient 
+-- Scripts:
+
+local function clientside() -- Background.MainClient / Clientside
 	local script = Instance.new('LocalScript', Background)
 	local req = require
 	local require = function(obj)
@@ -319,7 +351,7 @@ local function clientSide() -- Background.MainClient
 	local _Workspace = game:GetService("Workspace")
 	local _Players = game:GetService("Players")
 	local _ReplicatedStorage = game:GetService("ReplicatedStorage")
-
+	
 	--// Variables
 	local MainUI = script.Parent.Parent
 	local Loader = script.Parent.Loader
@@ -329,11 +361,11 @@ local function clientSide() -- Background.MainClient
 	local isOpen = false
 	local canClose = false
 	local st = 0
-
-
+	
+	
 	--// Tables
 	local gameIds = {2413927524, 6416764356, 4966566022,155615604,4623386862,1262182609}
-
+	
 	local games = {
 		[2413927524] = "The Rake";
 		[6416764356] = "Ch4mpus's Place";
@@ -342,12 +374,12 @@ local function clientSide() -- Background.MainClient
 		[4623386862] = "Piggy";
 		[1262182609] = "Booga Booga";
 	}
-
+	
 	local selectPos = {
 		Pos1 = UDim2.new(-0, 0,-0.001, 0);
 		Size1 = UDim2.new(0, 42,0, 281);
 	}
-
+	
 	local gameScripts = {
 		["Ch4mpus's Place"] = {
 			"Speed";
@@ -357,23 +389,23 @@ local function clientSide() -- Background.MainClient
 			"More lines 3";
 			"More lines 4";
 			"Debug"
-
+	
 		};
-
+	
 		["The Rake"] = {
 			"Crate ESP";
 			"Rake Radar";
 			"No Fog";
 			"Flare Radar";
 			"Crate Track";
-
+	
 		};
-
+	
 		["Paradise Life"] ={
 			"Speed";
 			"Jump";
 		};
-
+	
 		["Prison Life"] ={
 			"Kill Aura";
 			"Escape Prison";
@@ -385,38 +417,38 @@ local function clientSide() -- Background.MainClient
 			"Jump";
 			"Break Doors";
 		};
-		
+	
 		["Piggy"] ={
 			"B-Tools";
 		};
-		
+	
 		["Booga Booga"] ={
 			"Speed";
 			"Jump";
 		};
-		
+	
 	}
 	
 	local errors = {}
-
+	
 	--// Functions
 	local function waitTil()
 		repeat
 			wait(1)
 			print(script.Parent.Parent.Parent.Name)
 		until script.Parent.Parent.Parent.Name == "PlayerGui"
-
+	
 		return true
-
+	
 	end
-
+	
 	local function validatePlayer()
 		return true
 	end
-
+	
 	local function validateGame()
 		local f = false
-
+	
 		for _, v in pairs(gameIds) do
 			print(game.GameId)
 			print(v)
@@ -424,30 +456,30 @@ local function clientSide() -- Background.MainClient
 				f = true
 			end
 		end
-
+	
 		return f
 	end
-
+	
 	local function validateSide()
 		if RunService:IsClient() then
 			return true
 		end
 	end
-
-
+	
+	
 	local function validate(a,b,c)
 		local t = {a,b,c}
 		local f = true
-
+	
 		for i, v in pairs(t) do
 			if not v then
 				return false
 			end
 		end
-
+	
 		return f
 	end
-
+	
 	local function E_Pressed(input, typing)
 		if (typing == false) then
 			if (input.KeyCode == Enum.KeyCode.E) then
@@ -463,12 +495,12 @@ local function clientSide() -- Background.MainClient
 			print("f2");
 			for _,v in pairs(errors) do
 				local c = Instance.new("Frame");
-				c.Parent = PrismaticUI;
+				c.Parent = Prismv2;
 				c.BackgroundTransparency = 0;
 				c.BorderSizePixel = 0;
 				c.Position = UDim2.new(0.234, 0,0.346, 0);
 				c.Size = UDim2.new(0, 369,0, 178);
-
+	
 				local t = Instance.new("TextLabel");
 				t.Parent = c;
 				t.Font = Enum.Font.Gotham;
@@ -482,7 +514,7 @@ local function clientSide() -- Background.MainClient
 				t.TextStrokeTransparency = 0;
 				t.TextTransparency = 0;
 				t.BackgroundTransparency = 1;
-
+	
 				local t1 = Instance.new("TextLabel");
 				t1.Parent = c;
 				t1.Font = Enum.Font.Gotham;
@@ -496,11 +528,11 @@ local function clientSide() -- Background.MainClient
 				t1.TextStrokeTransparency = 0;
 				t1.TextTransparency = 0;
 				t1.BackgroundTransparency = 1;
-
+	
 				function updateDrag(ui, udim)
 					ui:TweenPosition(udim, Enum.EasingDirection.Out, Enum.EasingStyle.Quad, .3, true)
 				end
-
+	
 				c.InputBegan:Connect(function(input)
 					local ms = game.Players.LocalPlayer:GetMouse()
 					if (input.UserInputType == Enum.UserInputType.MouseButton1) then
@@ -515,41 +547,41 @@ local function clientSide() -- Background.MainClient
 			end
 		end
 	end
-
+	
 	local function transparency(item, goal, _time, color, color3, y)
 		if (color) then
 			TweenService:Create(item,TweenInfo.new(_time, Enum.EasingStyle.Cubic, Enum.EasingDirection.Out,0,false,0), {TextTransparency = goal; TextColor3 = color3}):Play()
 		else
 			TweenService:Create(item,TweenInfo.new(_time, Enum.EasingStyle.Cubic, Enum.EasingDirection.Out,0,false,0), {TextTransparency = goal}):Play()
 		end
-
+	
 		if (y) then
 			TweenService:Create(item,TweenInfo.new(_time, Enum.EasingStyle.Cubic, Enum.EasingDirection.In,0,false,0), {TextTransparency = goal}):Play()
 		end
-
+	
 	end
-
+	
 	local function Btransparency(item, goal, _time, color, color3)
 		if (color) then
 			TweenService:Create(item,TweenInfo.new(_time, Enum.EasingStyle.Cubic, Enum.EasingDirection.Out,0,false,0), {BackgroundTransparency = goal; BackgroundColor3 = color3}):Play()
 		else
 			TweenService:Create(item,TweenInfo.new(_time, Enum.EasingStyle.Cubic, Enum.EasingDirection.Out,0,false,0), {BackgroundTransparency = goal}):Play()
 		end
-
+	
 	end
-
+	
 	local function Itransparency(item, goal, _time, color, color3)
 		if (color) then
 			TweenService:Create(item,TweenInfo.new(_time, Enum.EasingStyle.Cubic, Enum.EasingDirection.Out,0,false,0), {ImageTransparency = goal; ImageColor3 = color3}):Play()
 		else
 			TweenService:Create(item,TweenInfo.new(_time, Enum.EasingStyle.Cubic, Enum.EasingDirection.Out,0,false,0), {ImageTransparency = goal}):Play()
 		end
-
+	
 	end
-
+	
 	local function clear()
 		for i,value in pairs(Loader:GetChildren()) do
-			transparency(value, 1, 2.5, true, Color3.new(255,255,255),true)
+			transparency(value, 1, 2.5, false, nil,true)
 		end
 		wait(3)
 		transparency(Loader.Check7, 0, 2.5, false, nil, false)
@@ -557,19 +589,19 @@ local function clientSide() -- Background.MainClient
 	--// Scripts
 	local function found(gameScripts, _Game, name)
 		for _, v in pairs(gameScripts[_Game]) do
-
+	
 			if (v == name) then
 				return true
 			end
 		end
 	end
-
+	
 	local function runScript(_Game, name)
-
+	
 		local EN = found(gameScripts, _Game, name)
-
-
-
+	
+	
+	
 		if (EN) then
 			if (_Game == "Ch4mpus's Place") then
 				if (name == "Speed") then
@@ -580,7 +612,7 @@ local function clientSide() -- Background.MainClient
 					local s, e = pcall(function()
 						_Workspace["Wfuawnfas"].Humanoid = 2
 					end)
-					
+	
 					if not s then
 						table.insert(errors,#errors +1 ,e)
 					end
@@ -591,7 +623,7 @@ local function clientSide() -- Background.MainClient
 						if game:GetService("Workspace").SupplyCrates:FindFirstChild("SupplyCrate") then
 							for i,v in pairs(game.Workspace.SupplyCrates:GetChildren()) do
 								if v.Name == "SupplyCrate" then
-
+	
 									local fraud1 = Instance.new("BillboardGui")
 									fraud1.Parent = v
 									fraud1.AlwaysOnTop = true
@@ -617,83 +649,13 @@ local function clientSide() -- Background.MainClient
 						end
 					end  
 				elseif (name == "Rake Radar") then
-						local c = Instance.new("Frame")
-						c.Parent = PrismaticUI
-						c.BackgroundTransparency = 1
-						c.BorderSizePixel = 0
-						c.Position = UDim2.new(0.234, 0,0.346, 0)
-						c.Size = UDim2.new(0, 369,0, 178)
-						
-						local t = Instance.new("TextLabel")
-						t.Parent = c
-						t.Font = Enum.Font.Gotham
-						t.BorderSizePixel = 0
-						t.Position = UDim2.new(0.228, 0,0, 0)
-						t.Size = UDim2.new(0, 200,0, 50)
-						t.TextSize = 24
-						t.Text = "Prism Hub"
-						t.TextColor3 = Color3.new(0, 255, 234)
-						t.TextStrokeColor3 = Color3.new(19, 122, 113)
-						t.TextStrokeTransparency = 0
-						t.TextTransparency = 1
-						t.BackgroundTransparency = 1
-						
-						local t1 = Instance.new("TextLabel")
-						t1.Parent = c
-						t1.Font = Enum.Font.Gotham
-						t1.BorderSizePixel = 0
-					    t1.Position = UDim2.new(0.228, 0,0.36, 0)
-						t1.Size = UDim2.new(0, 200,0, 18)
-						t1.TextSize = 20
-						t1.Text = "Rake's Distance is"
-						t1.TextColor3 = Color3.new(255, 255, 255)
-						t1.TextStrokeColor3 = Color3.new(0, 0, 0)
-						t1.TextStrokeTransparency = 0
-						t1.TextTransparency = 1
-					    t1.BackgroundTransparency = 1
-					
-						function updateDrag(ui, udim)
-							ui:TweenPosition(udim, Enum.EasingDirection.Out, Enum.EasingStyle.Quad, .3, true)
-						end
-
-						c.InputBegan:Connect(function(input)
-							local ms = game.Players.LocalPlayer:GetMouse()
-							if input.UserInputType == Enum.UserInputType.MouseButton1 then
-								repeat
-									wait(.01)
-									local x = ms.X
-									local y = ms.Y
-									updateDrag(c, UDim2.new(0,x, 0,y))
-								until not UserInput:IsMouseButtonPressed(Enum.UserInputType.MouseButton1)
-							end
-					end)
-					
-					Btransparency(c, 0, 1.5, true, Color3.fromRGB(21,21,21))
-					wait(1.7)
-					transparency(t, 0, 1, false)
-					transparency(t1, 0, 1, false)
-					
-					while wait(.5) do
-						if (_Workspace:FindFirstChild("Rake")) then
-							t1.Text = "Rake's distance from you is "..math.floor((_Workspace.Rake:FindFirstChildWhichIsA("Part").Position - _Workspace[_Players.LocalPlayer.Name].HumanoidRootPart.Position).magnitude)
-						end	
-					end
-						
-					    
-				elseif (name == "No Fog") then
-					while wait() do
-						game:GetService("ReplicatedStorage").CurrentLightingProperties.BRIGHTNESS.Value = 50
-
-						game:GetService("ReplicatedStorage").CurrentLightingProperties.FOGEND.Value = 999999
-					end
-				elseif (name == "Flare Radar") then
 					local c = Instance.new("Frame")
-					c.Parent = PrismaticUI
+					c.Parent = Prismv2
 					c.BackgroundTransparency = 1
 					c.BorderSizePixel = 0
 					c.Position = UDim2.new(0.234, 0,0.346, 0)
 					c.Size = UDim2.new(0, 369,0, 178)
-
+	
 					local t = Instance.new("TextLabel")
 					t.Parent = c
 					t.Font = Enum.Font.Gotham
@@ -707,7 +669,77 @@ local function clientSide() -- Background.MainClient
 					t.TextStrokeTransparency = 0
 					t.TextTransparency = 1
 					t.BackgroundTransparency = 1
-
+	
+					local t1 = Instance.new("TextLabel")
+					t1.Parent = c
+					t1.Font = Enum.Font.Gotham
+					t1.BorderSizePixel = 0
+					t1.Position = UDim2.new(0.228, 0,0.36, 0)
+					t1.Size = UDim2.new(0, 200,0, 18)
+					t1.TextSize = 20
+					t1.Text = "Rake's Distance is"
+					t1.TextColor3 = Color3.new(255, 255, 255)
+					t1.TextStrokeColor3 = Color3.new(0, 0, 0)
+					t1.TextStrokeTransparency = 0
+					t1.TextTransparency = 1
+					t1.BackgroundTransparency = 1
+	
+					function updateDrag(ui, udim)
+						ui:TweenPosition(udim, Enum.EasingDirection.Out, Enum.EasingStyle.Quad, .3, true)
+					end
+	
+					c.InputBegan:Connect(function(input)
+						local ms = game.Players.LocalPlayer:GetMouse()
+						if input.UserInputType == Enum.UserInputType.MouseButton1 then
+							repeat
+								wait(.01)
+								local x = ms.X
+								local y = ms.Y
+								updateDrag(c, UDim2.new(0,x, 0,y))
+							until not UserInput:IsMouseButtonPressed(Enum.UserInputType.MouseButton1)
+						end
+					end)
+	
+					Btransparency(c, 0, 1.5, true, Color3.fromRGB(21,21,21))
+					wait(1.7)
+					transparency(t, 0, 1, false)
+					transparency(t1, 0, 1, false)
+	
+					while wait(.5) do
+						if (_Workspace:FindFirstChild("Rake")) then
+							t1.Text = "Rake's distance from you is "..math.floor((_Workspace.Rake:FindFirstChildWhichIsA("Part").Position - _Workspace[_Players.LocalPlayer.Name].HumanoidRootPart.Position).magnitude)
+						end	
+					end
+	
+	
+				elseif (name == "No Fog") then
+					while wait() do
+						game:GetService("ReplicatedStorage").CurrentLightingProperties.BRIGHTNESS.Value = 50
+	
+						game:GetService("ReplicatedStorage").CurrentLightingProperties.FOGEND.Value = 999999
+					end
+				elseif (name == "Flare Radar") then
+					local c = Instance.new("Frame")
+					c.Parent = Prismv2
+					c.BackgroundTransparency = 1
+					c.BorderSizePixel = 0
+					c.Position = UDim2.new(0.234, 0,0.346, 0)
+					c.Size = UDim2.new(0, 369,0, 178)
+	
+					local t = Instance.new("TextLabel")
+					t.Parent = c
+					t.Font = Enum.Font.Gotham
+					t.BorderSizePixel = 0
+					t.Position = UDim2.new(0.228, 0,0, 0)
+					t.Size = UDim2.new(0, 200,0, 50)
+					t.TextSize = 24
+					t.Text = "Prism Hub"
+					t.TextColor3 = Color3.new(0, 255, 234)
+					t.TextStrokeColor3 = Color3.new(19, 122, 113)
+					t.TextStrokeTransparency = 0
+					t.TextTransparency = 1
+					t.BackgroundTransparency = 1
+	
 					local t1 = Instance.new("TextLabel")
 					t1.Parent = c
 					t1.Font = Enum.Font.Gotham
@@ -721,11 +753,11 @@ local function clientSide() -- Background.MainClient
 					t1.TextStrokeTransparency = 0
 					t1.TextTransparency = 1
 					t1.BackgroundTransparency = 1
-
+	
 					function updateDrag(ui, udim)
 						ui:TweenPosition(udim, Enum.EasingDirection.Out, Enum.EasingStyle.Quad, .3, true)
 					end
-
+	
 					c.InputBegan:Connect(function(input)
 						local ms = game.Players.LocalPlayer:GetMouse()
 						if input.UserInputType == Enum.UserInputType.MouseButton1 then
@@ -737,19 +769,19 @@ local function clientSide() -- Background.MainClient
 							until not UserInput:IsMouseButtonPressed(Enum.UserInputType.MouseButton1)
 						end
 					end)
-
+	
 					Btransparency(c, 0, 1.5, true, Color3.fromRGB(21,21,21))
 					wait(1.7)
 					transparency(t, 0, 1, false)
 					transparency(t1, 0, 1, false)
-					
+	
 					while wait() do
 						local x = _Workspace:FindFirstChild("FlareGunPickUp")
 						if (x) then
 							t1.Text = "Flare coordinates are "..x.FlareGun.Position.X..", "..x.FlareGun.Position.Y
 						end
 					end
-					
+	
 				elseif (name == "Crate Track") then
 					while wait(11) do
 						if _Workspace.SupplyCrates:FindFirstChild("Box") then
@@ -777,21 +809,21 @@ local function clientSide() -- Background.MainClient
 								end
 							end
 						end)
-						
+	
 						if (not s) then
 							table.insert(errors,#errors +1 ,e)
 						end
-
+	
 					end
 				elseif (name == "Escape Prison") then
 					local s, e = pcall(function()
 						_Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-943, 96, 2055)
 					end)
-					
+	
 					if (not s) then
 						table.insert(errors,#errors +1 ,e)
 					end
-				
+	
 				elseif (name == "AK47") then
 					local s, e = pcall(function()
 						local Weapon = {"AK-47"}
@@ -801,28 +833,28 @@ local function clientSide() -- Background.MainClient
 							end
 						end
 					end)
-					
+	
 					if (not s) then
 						table.insert(errors,#errors +1 ,e)
 					end
-					
+	
 				elseif (name == "TP to Prison") then
 					_Workspace[_Players.LocalPlayer.Name].HumanoidRootPart.CFrame = CFrame.new(897.31, 143.763, 2438.97)
 				elseif (name == "Arrest Crims") then
 					local s, e = pcall(function()
 						local teams = game:GetService("Teams"):GetTeams()
 						local c = nil
-						
+	
 						for i, team in pairs(teams) do
 							if team.Name == "Criminals" then
 								c = team:GetPlayers()
 							end
 						end
-						
+	
 						for intel, crim in pairs(c) do
 							local crim_char = _Workspace:FindFirstChild(crim.Name)
 							local char = _Workspace:WaitForChild(_Players.LocalPlayer.Name)
-							
+	
 							if (crim_char and crim ~= _Players.LocalPlayer) then
 								char.HumanoidRootPart.CFrame = crim_char.HumanoidRootPart.CFrame
 								local arrestEvent = _Workspace.Remote.arrest:InvokeServer(crim_char.HumanoidRootPart)
@@ -830,11 +862,11 @@ local function clientSide() -- Background.MainClient
 							end
 						end	
 					end)
-						
+	
 					if (not s) then
 						table.insert(errors,#errors +1 ,e);
 					end
-						
+	
 				elseif (name == "Speed") then
 					_Workspace[_Players.LocalPlayer.Name].Humanoid.WalkSpeed = 60
 				elseif (name == "Taze Bypass") then
@@ -845,7 +877,7 @@ local function clientSide() -- Background.MainClient
 							_Players.LocalPlayer.Character.ClientInputHandler.Disabled = true
 						end)
 					end)
-					
+	
 					if (not s) then
 						table.insert(errors,#errors +1 ,e)
 					end
@@ -854,18 +886,18 @@ local function clientSide() -- Background.MainClient
 				elseif (name == "Break Doors") then
 					local s, e = pcall(function()
 						_Workspace.Prison_Cellblock.doors:Destroy()
-
+	
 						for i,v in pairs(_Workspace:GetChildren())do
 							if v.Name == "Doors" then
 								v:Destroy()
 							end
 						end
 					end)
-					
+	
 					if (not s) then
 						table.insert(errors,#errors +1 ,e)
 					end
-					
+	
 				elseif (name == "Mod Gun") then
 					local s, e = pcall(function()
 						local m = require(game:GetService('Players').LocalPlayer.Character:FindFirstChildOfClass("Tool").GunStates)
@@ -875,11 +907,11 @@ local function clientSide() -- Background.MainClient
 						m.AutoFire = true
 						m.FireRate = 0
 					end)
-					
+	
 					if (not s) then
 						table.insert(errors,#errors +1 ,e)
 					end
-					
+	
 				end
 			elseif (_Game == "Piggy") then
 				if (name == "B-Tools") then
@@ -895,12 +927,12 @@ local function clientSide() -- Background.MainClient
 						tool4.BinType = "Script"
 						tool5.BinType = "Grab"
 					end)
-					
+	
 					if (not s) then
 						table.insert(errors,#errors +1 ,e)
 					end
-					
-			
+	
+	
 				end
 			elseif (_Game == "Booga Booga") then
 				if (name == "Speed") then
@@ -912,9 +944,9 @@ local function clientSide() -- Background.MainClient
 		else
 			--// Does nothing :]
 		end
-
+	
 	end
-
+	
 	local function addScript(string_, _game)
 		if (st == 0) then
 			local f = SF.SP1:Clone();
@@ -944,24 +976,24 @@ local function clientSide() -- Background.MainClient
 			--//
 			return f
 		end
-
+	
 	end
-
-
-
+	
+	
+	
 	--// End
 	local function hovered()
 		spawn(function()
 			Itransparency(Selector.ScriptHub, 0, 0, true, Color3.new(255,255,255), false)
 		end)	
 	end
-
+	
 	local function hoverEnded()
 		spawn(function()
 			Itransparency(Selector.ScriptHub, 0, 1, true, Color3.new(0,0,0), true)
 		end)
 	end
-
+	
 	local function scriptPage()
 		--// Page where all the scripts are in
 		if (not isOpen) then
@@ -986,14 +1018,14 @@ local function clientSide() -- Background.MainClient
 			end
 		end
 	end
-
+	
 	--// Set Up
 	require(script.Parent.DragModule);
 	UserInput.InputBegan:Connect(E_Pressed);
-
+	
 	waitTil()
 	transparency(Loader.Check1, 0, 3, false, nil)
-
+	
 	local p = validatePlayer();
 	local g = validateGame();
 	local s = validateSide();
@@ -1005,7 +1037,7 @@ local function clientSide() -- Background.MainClient
 		transparency(Loader.Check2, 0, 2, true, Color3.new(0,200,0))
 	end
 	wait(2.5)
-
+	
 	if (not g) then
 		print("P")
 		transparency(Loader.Check3, 0, 2, true, Color3.new(200,0,0))
@@ -1013,14 +1045,14 @@ local function clientSide() -- Background.MainClient
 		transparency(Loader.Check3, 0, 2, true, Color3.new(0,200,0))
 	end
 	wait(2.5)
-
+	
 	if (not s) then
 		transparency(Loader.Check4, 0, 2, true, Color3.new(200,0,0))
 	else
 		transparency(Loader.Check4, 0, 2, true, Color3.new(0,200,0))
 	end
-
-
+	
+	
 	wait(5)
 	if (not validate(p,g,s)) then
 		transparency(Loader.Check5, 0, 2, true, Color3.new(200,0,0))
@@ -1037,22 +1069,19 @@ local function clientSide() -- Background.MainClient
 	end
 	--// End of Setup
 	--// Main Code
-
+	
 	Selector.ScriptHub.MouseEnter:Connect(hovered)
-
+	
 	Selector.ScriptHub.MouseLeave:Connect(hoverEnded)
-
+	
 	Selector.ScriptHub.MouseButton1Down:Connect(scriptPage)
 	
 	wait(3)
 	UserInput.InputBegan:Connect(o_pressed)
-
-
-
-
+	
+	
+	
+	
 	--// End
 end
-coroutine.wrap(clientSide)() 
---// Coroutines allow the fake script to keep running normally
---// Very useful feature
-
+coroutine.wrap(clientside)()
