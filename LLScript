@@ -1,7 +1,7 @@
--- Gui to Lua
--- Version: 3.2
+--// Made by Ch4mpus
+--// Instance part of script by gui2lua
 
--- Instances:
+--// Instances
 
 local LLScript = Instance.new("ScreenGui")
 local Background = Instance.new("Frame")
@@ -14,7 +14,7 @@ local NewPath2 = Instance.new("TextButton")
 local End = Instance.new("TextButton")
 local End2 = Instance.new("TextButton")
 
---Properties:
+--// Properties
 
 LLScript.Name = "LLScript"
 LLScript.Parent = game.Players.LocalPlayer:WaitForChild("PlayerGui")
@@ -133,9 +133,27 @@ End2.TextSize = 32.000
 End2.TextStrokeTransparency = 0.000
 End2.TextWrapped = true
 
--- Scripts:
+End3 = Instance.new("TextButton")
+End3.Name = "End3"
+End3.Parent = Background
+End3.BackgroundColor3 = Color3.fromRGB(24, 24, 24)
+End3.BackgroundTransparency = 0.300
+End3.BorderColor3 = Color3.fromRGB(0, 0, 0)
+End3.BorderSizePixel = 3
+End3.Position = UDim2.new(0.0315457433, 0, 0.81, 0)
+End3.Size = UDim2.new(0, 296, 0, 30)
+End3.Font = Enum.Font.Gotham
+End3.Text = "Reset"
+End3.TextColor3 = Color3.fromRGB(255, 255, 255)
+End3.TextSize = 32.000
+End3.TextStrokeTransparency = 0.000
+End3.TextWrapped = true
+End3.TextScaled = true
 
-local function ZCDB_fake_script() -- Background.Main 
+
+--// Scripts
+
+local function ZCDB_fake_script() --// Main
 	local script = Instance.new('LocalScript', Background)
 
 	--// Services
@@ -167,6 +185,11 @@ local function ZCDB_fake_script() -- Background.Main
 	
 	local function makeNode(c, pos, nodeType)
 		if nodeType == "1" then
+			if node1 ~= false then
+				node1:Destroy()
+				node1 = false
+			end
+			
 			node1 = Instance.new("Part", c)
 			node1.Shape = Enum.PartType.Ball
 			node1.Anchored = true
@@ -176,7 +199,13 @@ local function ZCDB_fake_script() -- Background.Main
 			node1.CanCollide = false
 			node1.Transparency = .3
 			node1.BrickColor = BrickColor.Green()
+			node1.Material = Enum.Material.Neon
 		else
+			if node2 ~= false then
+				node2:Destroy()
+				node2 = false
+			end
+			
 			node2 = Instance.new("Part", c)
 			node2.Shape = Enum.PartType.Ball
 			node2.Anchored = true
@@ -186,6 +215,7 @@ local function ZCDB_fake_script() -- Background.Main
 			node2.CanCollide = false
 			node2.Transparency = .3
 			node2.BrickColor = BrickColor.Blue()
+			node2.Material = Enum.Material.Neon
 		end
 	end
 	
@@ -195,6 +225,60 @@ local function ZCDB_fake_script() -- Background.Main
 	
 	local function stopPathfinding()
 		pathfind = false
+	end
+	
+	local function tip()
+		End3.Text = "Tip: Don't move while pathfinding! Instead turn off pathfinding"
+	end
+	
+	local function untip()
+		End3.Text = "Reset"
+	end
+	
+	local function restart()
+		spawn(function()
+			while true do
+				wait()
+				repeat
+					wait(1)
+				until pathfind and node1 ~= false and node2 ~= false
+
+				repeat
+					--// Vars
+					wait()
+					local path = pathfindS:CreatePath()
+
+					--// Pathfind here
+					if isOn1 then
+						isOn1 = false
+						isOn2 = true
+						path:ComputeAsync(char.HumanoidRootPart.Position, node2.Position)
+						local ways = path:GetWaypoints()
+
+						for i, point in pairs(ways) do
+							local hum = char:FindFirstChildWhichIsA("Humanoid")
+							if hum then
+								hum:MoveTo(point.Position)
+								hum.MoveToFinished:Wait()
+							end
+						end
+					else
+						isOn1 = true
+						isOn2 = false
+						path:ComputeAsync(char.HumanoidRootPart.Position, node1.Position)
+						local ways = path:GetWaypoints()
+
+						for i, point in pairs(ways) do
+							local hum = char:FindFirstChildWhichIsA("Humanoid")
+							if hum then
+								hum:MoveTo(point.Position)
+								hum.MoveToFinished:Wait()
+							end
+						end
+					end
+				until not pathfind
+			end
+		end)
 	end
 	--// Config
 	local f = Instance.new("Folder", workspace)
@@ -212,6 +296,9 @@ local function ZCDB_fake_script() -- Background.Main
 	
 	script.Parent.End.MouseButton1Down:Connect(startPathfinding)
 	script.Parent.End2.MouseButton1Down:Connect(stopPathfinding)
+	End3.MouseButton1Down:Connect(restart)
+	End3.MouseEnter:Connect(tip)
+	End3.MouseLeave:Connect(untip)
 	--// Start
 	spawn(function()
 		while true do
