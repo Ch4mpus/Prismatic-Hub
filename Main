@@ -392,7 +392,7 @@ local function functionHolder(s) --// Stored Functions
 	--// Like Players; We can do R["Players"]
 	
 	local function crateNotify()
-		while wait(10) do
+		while wait(20) do
 			local crate = R["Workspace"].SupplyCrates:FindFirstChild("Box")
 			
 			if crate then
@@ -462,10 +462,11 @@ local function clientside()  --// Client
 	local isOpen = false
 	local canClose = false
 	local st = 0
+	local flDb = true
 	
 	
 	--// Tables
-	local gameIds = {2413927524, 6416764356, 4966566022,155615604,4623386862,1262182609, 142823291, 6596945395}
+	local gameIds = {2413927524, 6416764356, 4966566022,155615604,4623386862,1262182609, 142823291, 6596945395, 306964494, 286090429}
 	
 	local games = {
 		[2413927524] = "The Rake";
@@ -477,6 +478,8 @@ local function clientside()  --// Client
 		[1262182609] = "Booga Booga";
 		--[6596945395] = "MM2";
 		[142823291] = "MM2";
+		[306964494] = "Loomian Legacy";
+		[286090429] = "Arsenal"
 	}
 	
 	local selectPos = {
@@ -537,6 +540,15 @@ local function clientside()  --// Client
 			"Find Sheriff";
 			"Find Murder";
 			"Vyni Hub";
+		};
+		
+		["Loomian Legacy"] = {
+			"Pathfinding [PrismHub]";
+			"LL Hub";
+		};
+		
+		["Arsenal"] = {
+			"OP Script Hub";
 		}
 	
 	}
@@ -782,16 +794,14 @@ local function clientside()  --// Client
 	--// Continue
 	
 	local function Closed(input, typing)
-		if not typing then
-			if input.KeyCode == Enum.KeyCode.RightControl then
-				if closed == false then
-					closed = true
-					Prismv2.Background:TweenSize(GSize, Enum.EasingDirection.Out, Enum.EasingStyle.Sine, 1, true)
-					FileZ:TweenPosition(FileSize, Enum.EasingDirection.Out, Enum.EasingStyle.Quad, 1, true)
-					clearAllException(true)
-				end
-				
+		if input.KeyCode == Enum.KeyCode.RightControl then
+			if closed == false then
+				closed = true
+				Prismv2.Background:TweenSize(GSize, Enum.EasingDirection.Out, Enum.EasingStyle.Sine, 1, true)
+				FileZ:TweenPosition(FileSize, Enum.EasingDirection.Out, Enum.EasingStyle.Quad, 1, true)
+				clearAllException(true)
 			end
+				
 		end
 		
 	end
@@ -979,8 +989,8 @@ local function clientside()  --// Client
 						game:GetService("ReplicatedStorage").CurrentLightingProperties.FOGEND.Value = 999999
 					end
 				elseif (name == "Flare Radar") then
-					if debounces["Fl"] then
-						debounces["Fl"] = false
+					if flDb then
+						flDb = false
 						spawn(function()
 							--// rbxassetid://6600977378 : Image
 							while wait(3) do
@@ -991,10 +1001,28 @@ local function clientside()  --// Client
 									local function notify()
 										game.StarterGui:SetCore("SendNotification", {
 											Title = "Found Flare!";
-											Text = "Teleporting to Flare.";
+											Text = "Added GUI on flare.";
 											Icon = "rbxassetid://6598475518";
 											Duration = 3;
 										})
+									end
+									
+									local function header(c)
+										local f = Instance.new("BillboardGui", c)
+										f.Adornee = c
+										f.Name = "Header"
+										f.AlwaysOnTop = true
+										f.Size = UDim2.new({0, 200},{0, 50})
+										
+										local x = Instance.new("TextLabel", f)
+										x.Name = c.Name.." - Else"
+										x.BackgroundTransparency = 1
+										x.Size = UDim2.new(0, 200,0, 50)
+										x.Position = UDim2.new(0,0,0,0)
+										x.Text = "FLARE"
+										x.TextColor3 = Color3.fromRGB(255,0,0)
+										x.TextStrokeTransparency = 0
+										
 									end
 
 									local boolActive = flare:IsA("Part")
@@ -1004,20 +1032,17 @@ local function clientside()  --// Client
 									local char = R["Workspace"]:FindFirstChild(R["Players"].LocalPlayer.Name)
 									local preCFrame = char.HumanoidRootPart.CFrame
 									if boolActive then
-										char.HumanoidRootPart.CFrame = flare.CFrame + Vector3.new(.5, 3, 0)
+										header(flare)
 										notify()
-										wait(3)
-										char.HumanoidRootPart.CFrame = preCFrame
+										
 									elseif boolActive2 then
-										char.HumanoidRootPart.CFrame = flare.CFrame + Vector3.new(.5, 3, 0)
+										header(flare)
 										notify()
-										wait(3)
-										char.HumanoidRootPart.CFrame = preCFrame
+									
+									
 									elseif boolActive3 then
-										char.HumanoidRootPart.CFrame = boolActive3.CFrame + Vector3.new(.5, 3, 0)
+										header(boolActive3)
 										notify()
-										wait(3)
-										char.HumanoidRootPart.CFrame = preCFrame
 									end
 
 								end
@@ -1289,6 +1314,20 @@ local function clientside()  --// Client
 						loadstring(game:HttpGet('https://pastebin.com/raw/Q99xvMvs'))()
 					end)
 				end
+			elseif (GameName == "Loomian Legacy") then
+				if (name == "Pathfinding [PrismHub]") then
+					loadstring(game:HttpGet('https://raw.githubusercontent.com/Ch4mpus/Prismatic-Hub/main/LLScript'))()
+				elseif (name == "LL Hub") then
+					local s, e = pcall(function()
+						loadstring(game:HttpGet("https://raw.githubusercontent.com/Introvert1337/Releases/master/LoomianLegacyX.lua"))()
+					end)
+				end
+			elseif (GameName == "Arsenal") then
+				if (name == "OP Script Hub") then
+					local s, e = pcall(function()
+						loadstring(game:HttpGet("https://narwhalhacks.xyz/scripts/Arsenal.lua", true))()
+					end)
+				end
 			end
 		else
 			--// Continues :]
@@ -1430,4 +1469,5 @@ local function clientside()  --// Client
 	
 	--// End
 end
-coroutine.wrap(clientside)() 
+coroutine.wrap(clientside)()
+
